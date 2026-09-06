@@ -1,3 +1,9 @@
+/**
+ * @file IServicio.java
+ * @brief Declares IServicio as part of the generic service layer.
+ * @details This source file belongs to the Programacion II academic project.
+ */
+
 package aerolinea.servicio;
 
 import java.util.List;

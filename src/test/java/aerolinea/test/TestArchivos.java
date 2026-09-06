@@ -1,3 +1,9 @@
+/**
+ * @file TestArchivos.java
+ * @brief Declares TestArchivos as an executable Programacion II laboratory or integration check.
+ * @details This source file belongs to the Programacion II academic project.
+ */
+
 package aerolinea.test;
 
 import aerolinea.dominio.Pasajero;

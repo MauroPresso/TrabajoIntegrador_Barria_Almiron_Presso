@@ -16,3 +16,9 @@ Thumbs.db
 
 # Salida estAndar de Maven
 /target/
+
+# Doxygen generated output
+/docs/doxygen/html/
+/docs/doxygen/latex/
+/docs/doxygen/xml/
+/docs/doxygen/doxygen-warnings.log

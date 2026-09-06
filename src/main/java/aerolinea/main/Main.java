@@ -1,3 +1,9 @@
+/**
+ * @file Main.java
+ * @brief Declares Main as part of application startup and dependency composition.
+ * @details This source file belongs to the Programacion II academic project.
+ */
+
 package aerolinea.main;
 
 import aerolinea.dominio.Aerolinea;

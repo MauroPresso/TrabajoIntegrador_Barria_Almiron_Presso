@@ -1,3 +1,9 @@
+/**
+ * @file RepositorioArchivo.java
+ * @brief Declares RepositorioArchivo as part of the generic persistence layer.
+ * @details This source file belongs to the Programacion II academic project.
+ */
+
 package aerolinea.repositorio;
 
 import java.io.FileInputStream;

@@ -1,3 +1,9 @@
+/**
+ * @file Servicio.java
+ * @brief Declares Servicio as part of the generic service layer.
+ * @details This source file belongs to the Programacion II academic project.
+ */
+
 package aerolinea.servicio;
 
 import aerolinea.repositorio.IRepositorio;

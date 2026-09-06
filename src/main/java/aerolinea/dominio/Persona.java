@@ -1,3 +1,9 @@
+/**
+ * @file Persona.java
+ * @brief Declares Persona as part of the airline domain model.
+ * @details This source file belongs to the Programacion II academic project.
+ */
+
 package aerolinea.dominio;
 
 import java.io.Serializable;

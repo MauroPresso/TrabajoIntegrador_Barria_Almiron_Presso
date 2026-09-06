@@ -1,3 +1,9 @@
+/**
+ * @file PanelVuelosTabla.java
+ * @brief Declares PanelVuelosTabla as part of the Swing or console user interface.
+ * @details This source file belongs to the Programacion II academic project.
+ */
+
 package aerolinea.ui;
 
 import aerolinea.dominio.EnumPanel;

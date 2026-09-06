@@ -1,3 +1,9 @@
+/**
+ * @file EnumPanel.java
+ * @brief Declares EnumPanel as part of the airline domain model.
+ * @details This source file belongs to the Programacion II academic project.
+ */
+
 package aerolinea.dominio;
 
 /**

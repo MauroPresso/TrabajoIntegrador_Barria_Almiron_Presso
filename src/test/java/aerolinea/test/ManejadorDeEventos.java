@@ -1,3 +1,9 @@
+/**
+ * @file ManejadorDeEventos.java
+ * @brief Declares ManejadorDeEventos as an executable Programacion II laboratory or integration check.
+ * @details This source file belongs to the Programacion II academic project.
+ */
+
 package aerolinea.test;
 
 import java.awt.event.ActionEvent;

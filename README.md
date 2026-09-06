@@ -255,3 +255,28 @@ El proyecto incorpora, entre otros:
 
 - [Arquitectura y equivalencias con Biblioteca](docs/ARQUITECTURA.md)
 - [Guia de estudio y validacion](docs/GUIA_ESTUDIO.md)
+
+## Doxygen
+
+The complete Java source tree is prepared for Doxygen.
+
+Configuration:
+
+```text
+docs/doxygen/Doxyfile
+```
+
+Generate HTML documentation:
+
+```powershell
+doxygen .\docs\doxygen\Doxyfile
+```
+
+Open the generated documentation:
+
+```powershell
+start .\docs\doxygen\html\index.html
+```
+
+The Doxygen configuration includes all source and laboratory packages, private
+members, static members, local classes, local methods, and inline source code.

@@ -1,3 +1,9 @@
+/**
+ * @file ComparadorVueloPorDestino.java
+ * @brief Declares ComparadorVueloPorDestino as an auxiliary utility or comparison strategy.
+ * @details This source file belongs to the Programacion II academic project.
+ */
+
 package aerolinea.util;
 
 import java.util.Comparator;
