@@ -6,25 +6,25 @@ import aerolinea.repositorio.IRepositorio;
 import aerolinea.repositorio.RepositorioArchivo;
 import aerolinea.servicio.Servicio;
 import aerolinea.ui.Menu;
+import aerolinea.ui.Ventana;
+
+import javax.swing.SwingUtilities;
+import java.util.Arrays;
 
 /**
- * Punto de entrada principal del Sistema de AerolÃ­nea.
+ * Punto de entrada del Sistema de AerolÃ­nea.
  *
- * <p>Main ensambla las capas de la aplicaciÃ³n:</p>
+ * <p>Por defecto inicia la interfaz grÃ¡fica Swing. Para conservar el menÃº
+ * de consola desarrollado en las etapas anteriores puede ejecutarse:</p>
  *
  * <pre>
- * RepositorioArchivo&lt;Vuelo&gt;
- *          â†“
- *     Servicio&lt;Vuelo&gt;
- *          â†“
- *       Aerolinea
- *          â†“
- *         Menu
+ * java -jar SistemaDeAerolinea-1.0-SNAPSHOT.jar --consola
  * </pre>
  */
 public class Main {
 
     public static void main(String[] args) {
+
         IRepositorio<Vuelo> repositorioVuelos =
                 new RepositorioArchivo<>("data/vuelos.dat");
 
@@ -34,9 +34,23 @@ public class Main {
         Aerolinea aerolinea =
                 new Aerolinea("AerolÃ­nea IFES", servicioVuelos.listar());
 
-        Menu menu =
-                new Menu(aerolinea, servicioVuelos);
+        boolean modoConsola =
+                Arrays.stream(args)
+                        .anyMatch("--consola"::equalsIgnoreCase);
 
-        menu.iniciar();
+        if (modoConsola) {
+            Menu menu = new Menu(aerolinea, servicioVuelos);
+            menu.iniciar();
+            return;
+        }
+
+        /*
+         * Swing debe crear y modificar componentes grÃ¡ficos en el
+         * Event Dispatch Thread (EDT).
+         */
+        SwingUtilities.invokeLater(() -> {
+            Ventana ventana = new Ventana(aerolinea, servicioVuelos);
+            ventana.setVisible(true);
+        });
     }
 }
