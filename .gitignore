@@ -13,3 +13,6 @@
 # Archivos temporales del sistema
 .DS_Store
 Thumbs.db
+
+# Salida estÃ¡ndar de Maven
+/target/
