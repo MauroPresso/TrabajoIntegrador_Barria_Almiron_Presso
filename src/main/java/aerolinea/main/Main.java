@@ -1,6 +1,7 @@
 package aerolinea.main;
 
 import aerolinea.dominio.Aerolinea;
+import aerolinea.dominio.Persona;
 import aerolinea.dominio.Vuelo;
 import aerolinea.repositorio.IRepositorio;
 import aerolinea.repositorio.RepositorioArchivo;
@@ -13,43 +14,52 @@ import java.util.Arrays;
 
 /**
  * Punto de entrada del Sistema de AerolÃ­nea.
- *
- * <p>Por defecto inicia la interfaz grÃ¡fica Swing. Para conservar el menÃº
- * de consola desarrollado en las etapas anteriores puede ejecutarse:</p>
- *
- * <pre>
- * java -jar SistemaDeAerolinea-1.0-SNAPSHOT.jar --consola
- * </pre>
  */
 public class Main {
 
     public static void main(String[] args) {
 
         IRepositorio<Vuelo> repositorioVuelos =
-                new RepositorioArchivo<>("data/vuelos.dat");
+                new RepositorioArchivo<>(
+                        "data/vuelos.dat");
+
+        IRepositorio<Persona> repositorioPersonas =
+                new RepositorioArchivo<>(
+                        "data/personas.dat");
 
         Servicio<Vuelo> servicioVuelos =
                 new Servicio<>(repositorioVuelos);
 
+        Servicio<Persona> servicioPersonas =
+                new Servicio<>(repositorioPersonas);
+
         Aerolinea aerolinea =
-                new Aerolinea("AerolÃ­nea IFES", servicioVuelos.listar());
+                new Aerolinea(
+                        "AerolÃ­nea IFES",
+                        servicioVuelos.listar(),
+                        servicioPersonas.listar());
 
         boolean modoConsola =
                 Arrays.stream(args)
-                        .anyMatch("--consola"::equalsIgnoreCase);
+                        .anyMatch(
+                                "--consola"::equalsIgnoreCase);
 
         if (modoConsola) {
-            Menu menu = new Menu(aerolinea, servicioVuelos);
+            Menu menu = new Menu(
+                    aerolinea,
+                    servicioVuelos,
+                    servicioPersonas);
+
             menu.iniciar();
             return;
         }
 
-        /*
-         * Swing debe crear y modificar componentes grÃ¡ficos en el
-         * Event Dispatch Thread (EDT).
-         */
         SwingUtilities.invokeLater(() -> {
-            Ventana ventana = new Ventana(aerolinea, servicioVuelos);
+            Ventana ventana = new Ventana(
+                    aerolinea,
+                    servicioVuelos,
+                    servicioPersonas);
+
             ventana.setVisible(true);
         });
     }

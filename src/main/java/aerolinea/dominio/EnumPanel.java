@@ -1,14 +1,15 @@
 package aerolinea.dominio;
 
 /**
- * Identifica las vistas disponibles en la interfaz grÃ¡fica.
+ * Vistas disponibles en la interfaz grÃ¡fica.
  *
- * <p>Se utiliza junto con CardLayout para seleccionar quÃ© JPanel
- * debe mostrarse en cada momento.</p>
+ * <p>Los valores se utilizan como identificadores del CardLayout.</p>
  */
 public enum EnumPanel {
     PRINCIPAL,
-    VUELOS,
-    PASAJEROS,
+    FORMULARIO_VUELO,
+    TABLA_VUELOS,
+    FORMULARIO_PASAJERO,
+    TABLA_PASAJEROS,
     RESERVAS
 }

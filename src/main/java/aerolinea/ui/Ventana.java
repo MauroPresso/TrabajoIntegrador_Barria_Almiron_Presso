@@ -2,6 +2,7 @@ package aerolinea.ui;
 
 import aerolinea.dominio.Aerolinea;
 import aerolinea.dominio.EnumPanel;
+import aerolinea.dominio.Persona;
 import aerolinea.dominio.Vuelo;
 import aerolinea.servicio.Servicio;
 
@@ -13,26 +14,31 @@ import java.awt.BorderLayout;
 
 /**
  * Ventana principal Swing del Sistema de AerolÃ­nea.
- *
- * <p>La clase es anÃ¡loga a Ventana del proyecto Biblioteca: extiende JFrame,
- * contiene un PanelManager y conecta JMenuItem con ActionListener mediante
- * expresiones lambda.</p>
  */
 public class Ventana extends JFrame {
 
     private final PanelManager panelManager;
 
-    public Ventana(Aerolinea aerolinea, Servicio<Vuelo> servicioVuelos) {
+    public Ventana(
+            Aerolinea aerolinea,
+            Servicio<Vuelo> servicioVuelos,
+            Servicio<Persona> servicioPersonas) {
+
         super("Sistema de AerolÃ­nea IFES");
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(850, 600);
+        setSize(950, 650);
         setLocationRelativeTo(null);
 
-        this.panelManager = new PanelManager(aerolinea, servicioVuelos);
+        this.panelManager = new PanelManager(
+                aerolinea,
+                servicioVuelos,
+                servicioPersonas);
 
         getContentPane().setLayout(new BorderLayout());
-        getContentPane().add(panelManager, BorderLayout.CENTER);
+        getContentPane().add(
+                panelManager,
+                BorderLayout.CENTER);
 
         setJMenuBar(crearMenu());
     }
@@ -41,38 +47,64 @@ public class Ventana extends JFrame {
         JMenuBar barra = new JMenuBar();
         JMenu menu = new JMenu("Opciones");
 
-        JMenuItem itemPrincipal = new JMenuItem("Principal");
-        JMenuItem itemVuelos = new JMenuItem("Vuelos");
-        JMenuItem itemPasajeros = new JMenuItem("Pasajeros");
-        JMenuItem itemReservas = new JMenuItem("Reservas");
-        JMenuItem itemSalir = new JMenuItem("Salir");
+        agregarItem(
+                menu,
+                "Principal",
+                EnumPanel.PRINCIPAL);
 
-        itemPrincipal.addActionListener(
-                evento -> panelManager.mostrarPanel(EnumPanel.PRINCIPAL));
+        menu.addSeparator();
 
-        itemVuelos.addActionListener(
-                evento -> panelManager.mostrarPanel(EnumPanel.VUELOS));
+        agregarItem(
+                menu,
+                "Ingresar vuelo",
+                EnumPanel.FORMULARIO_VUELO);
 
-        itemPasajeros.addActionListener(
-                evento -> panelManager.mostrarPanel(EnumPanel.PASAJEROS));
+        agregarItem(
+                menu,
+                "Listar vuelos",
+                EnumPanel.TABLA_VUELOS);
 
-        itemReservas.addActionListener(
-                evento -> panelManager.mostrarPanel(EnumPanel.RESERVAS));
+        agregarItem(
+                menu,
+                "Registrar pasajero",
+                EnumPanel.FORMULARIO_PASAJERO);
+
+        agregarItem(
+                menu,
+                "Listar pasajeros",
+                EnumPanel.TABLA_PASAJEROS);
+
+        agregarItem(
+                menu,
+                "Reservas",
+                EnumPanel.RESERVAS);
+
+        menu.addSeparator();
+
+        JMenuItem itemSalir =
+                new JMenuItem("Salir");
 
         itemSalir.addActionListener(
                 evento -> dispose());
 
-        menu.add(itemPrincipal);
-        menu.addSeparator();
-        menu.add(itemVuelos);
-        menu.add(itemPasajeros);
-        menu.add(itemReservas);
-        menu.addSeparator();
         menu.add(itemSalir);
-
         barra.add(menu);
 
         return barra;
+    }
+
+    private void agregarItem(
+            JMenu menu,
+            String texto,
+            EnumPanel destino) {
+
+        JMenuItem item =
+                new JMenuItem(texto);
+
+        item.addActionListener(
+                evento -> panelManager.mostrarPanel(destino));
+
+        menu.add(item);
     }
 
     public PanelManager getPanelManager() {

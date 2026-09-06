@@ -13,6 +13,7 @@ import aerolinea.servicio.Servicio;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -63,6 +64,11 @@ public class Menu {
     private final Servicio<Vuelo> servicioVuelos;
 
     /**
+     * Servicio genÃ©rico encargado de persistir personas.
+     */
+    private final Servicio<Persona> servicioPersonas;
+
+    /**
      * @brief Scanner utilizado para leer datos desde consola.
      */
     private final Scanner scanner;
@@ -82,6 +88,13 @@ public class Menu {
      * @param aerolinea Objeto principal del dominio.
      */
     public Menu(Aerolinea aerolinea, Servicio<Vuelo> servicioVuelos) {
+        this(aerolinea, servicioVuelos, null);
+    }
+
+    public Menu(Aerolinea aerolinea,
+                Servicio<Vuelo> servicioVuelos,
+                Servicio<Persona> servicioPersonas) {
+
         if (aerolinea == null) {
             throw new IllegalArgumentException("La aerolÃ­nea no puede ser nula.");
         }
@@ -92,6 +105,7 @@ public class Menu {
 
         this.aerolinea = aerolinea;
         this.servicioVuelos = servicioVuelos;
+        this.servicioPersonas = servicioPersonas;
         this.scanner = new Scanner(System.in);
         this.cambiosSinGuardar = false;
     }
@@ -271,6 +285,7 @@ public class Menu {
             Pasajero pasajero = new Pasajero(dni, nombre, apellido, numeroPasaporte);
             aerolinea.registrarPersona(pasajero);
             System.out.println("Pasajero registrado correctamente.");
+            marcarCambiosYGuardar("registrar pasajero");
         } catch (IllegalArgumentException e) {
             System.out.println("No se pudo registrar el pasajero: " + e.getMessage());
         }
@@ -418,6 +433,17 @@ public class Menu {
         try {
             servicioVuelos.reemplazarTodos(aerolinea.getVuelos());
             servicioVuelos.guardar();
+
+            if (servicioPersonas != null) {
+                servicioPersonas.reemplazarTodos(
+                        new ArrayList<>(
+                                aerolinea
+                                        .getPersonasPorDni()
+                                        .values()));
+
+                servicioPersonas.guardar();
+            }
+
             cambiosSinGuardar = false;
             System.out.println("Vuelos guardados correctamente " + contexto + ".");
         } catch (IOException e) {

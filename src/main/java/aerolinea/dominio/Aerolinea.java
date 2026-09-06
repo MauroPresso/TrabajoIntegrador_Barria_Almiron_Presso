@@ -54,7 +54,7 @@ public class Aerolinea {
      * @param nombre nombre comercial de la aerolÃ­nea
      */
     public Aerolinea(String nombre) {
-        this(nombre, new ArrayList<>());
+        this(nombre, new ArrayList<>(), new ArrayList<>());
     }
 
     /**
@@ -68,10 +68,33 @@ public class Aerolinea {
      * @param vuelosIniciales vuelos con los que se inicializa el dominio
      */
     public Aerolinea(String nombre, List<Vuelo> vuelosIniciales) {
+        this(nombre, vuelosIniciales, new ArrayList<>());
+    }
+
+    /**
+     * Crea una aerolÃ­nea a partir de vuelos y personas previamente cargados.
+     *
+     * <p>Primero reconstruye las personas que forman parte del grafo de vuelos.
+     * Luego incorpora las personas persistidas de forma independiente que no
+     * estÃ©n ya representadas por el mismo DNI. Esto permite conservar tambiÃ©n
+     * pasajeros registrados que aÃºn no poseen reservas.</p>
+     *
+     * @param nombre nombre comercial de la aerolÃ­nea
+     * @param vuelosIniciales vuelos previamente cargados
+     * @param personasIniciales personas previamente cargadas
+     */
+    public Aerolinea(String nombre,
+                     List<Vuelo> vuelosIniciales,
+                     List<Persona> personasIniciales) {
+
         this.nombre = validarTextoObligatorio(nombre, "nombre de la aerolÃ­nea");
 
         if (vuelosIniciales == null) {
             throw new IllegalArgumentException("La lista inicial de vuelos no puede ser nula.");
+        }
+
+        if (personasIniciales == null) {
+            throw new IllegalArgumentException("La lista inicial de personas no puede ser nula.");
         }
 
         this.vuelos = new ArrayList<>(vuelosIniciales);
@@ -79,6 +102,10 @@ public class Aerolinea {
         this.pasajerosConReservaActiva = new HashSet<>();
 
         reconstruirPersonasDesdeVuelos();
+
+        for (Persona persona : personasIniciales) {
+            registrarPersona(persona);
+        }
     }
     /**
      * @brief Reconstruye las colecciones auxiliares de personas a partir de los vuelos del dominio.
