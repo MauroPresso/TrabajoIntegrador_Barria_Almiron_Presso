@@ -3,7 +3,7 @@ package aerolinea.main;
 import aerolinea.repositorio.IRepositorio;
 import aerolinea.ui.Menu;
 import aerolinea.dominio.Vuelo;
-import aerolinea.repositorio.RepositorioVuelosArchivo;
+import aerolinea.repositorio.RepositorioArchivo;
 import aerolinea.servicio.Aerolinea;
 
 /**
@@ -29,7 +29,7 @@ public class Main {
      * @param args Argumentos de consola no utilizados.
      */
     public static void main(String[] args) {
-        IRepositorio<Vuelo> repositorioVuelos = new RepositorioVuelosArchivo();
+        IRepositorio<Vuelo> repositorioVuelos = new RepositorioArchivo<Vuelo>("data/vuelos.dat");
 
         Aerolinea aerolinea = new Aerolinea("Aerolínea IFES", repositorioVuelos);
 
