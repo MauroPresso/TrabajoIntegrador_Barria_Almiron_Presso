@@ -65,9 +65,9 @@ public class Servicio<T> implements IServicio<T> {
     /**
      * Devuelve una vista de la lista administrada.
      *
-     * <p>Se conserva la misma instancia para que una capa de dominio pueda
-     * operar sobre los objetos cargados. La encapsulaciÃ³n definitiva se
-     * resolverÃ¡ en la Etapa 3B al separar Aerolinea de la persistencia.</p>
+     * <p>La lista representa el estado administrado por el servicio. La capa de
+     * dominio recibe una copia al inicializarse y se sincroniza explÃ­citamente
+     * mediante reemplazarTodos() antes de persistir.</p>
      */
     @Override
     public List<T> listar() {
