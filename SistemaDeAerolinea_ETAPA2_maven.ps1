@@ -6,7 +6,7 @@ $ErrorActionPreference = "Stop"
 
 $BaseBranch = "refactor/programacion-ii-etapa1"
 $TargetBranch = "refactor/programacion-ii-etapa2-maven"
-$ThisScriptName = "SistemaDeAerolinea_ETAPA2_maven.ps1"
+$ThisScriptName = Split-Path -Leaf $PSCommandPath
 
 function Assert-Command {
     param([string]$Name)
@@ -84,9 +84,11 @@ if ($currentBranch -ne $BaseBranch -and $currentBranch -ne $TargetBranch) {
 }
 
 if ($currentBranch -eq $BaseBranch) {
-    $localTarget = (git branch --list $TargetBranch).Trim()
+    # git branch --list devuelve vacío/null cuando la rama todavía no existe.
+    # Lo convertimos siempre en array para evitar llamar .Trim() sobre $null.
+    $localTarget = @(git branch --list $TargetBranch)
 
-    if ($localTarget) {
+    if ($localTarget.Count -gt 0) {
         git switch $TargetBranch
         Assert-LastExitCode "No se pudo cambiar a la rama $TargetBranch."
     }
@@ -231,10 +233,27 @@ if ($gitignore -notmatch '(?m)^/target/\s*$') {
     Write-Utf8NoBom -Path $gitignorePath -Content $gitignore
 }
 
-# El script de la Etapa 1 fue una herramienta temporal, no parte del proyecto.
+# Los scripts de migración son herramientas temporales, no forman parte
+# del código fuente final del proyecto.
 if (Test-Path "SistemaDeAerolinea_ETAPA1_refactor.ps1") {
     git rm "SistemaDeAerolinea_ETAPA1_refactor.ps1"
     Assert-LastExitCode "No se pudo retirar el script temporal de la Etapa 1."
+}
+
+# Si algún script de la Etapa 2 fue agregado por accidente al repositorio,
+# lo quitamos solamente del índice de Git. El archivo físico que está
+# ejecutándose queda disponible hasta finalizar PowerShell.
+$temporaryStage2Scripts = @(
+    "SistemaDeAerolinea_ETAPA2_maven.ps1",
+    $ThisScriptName
+) | Select-Object -Unique
+
+foreach ($temporaryScript in $temporaryStage2Scripts) {
+    $trackedScript = @(git ls-files -- "$temporaryScript")
+    if ($trackedScript.Count -gt 0) {
+        git rm --cached --ignore-unmatch "$temporaryScript"
+        Assert-LastExitCode "No se pudo retirar $temporaryScript del índice de Git."
+    }
 }
 
 Write-Host "[5/8] Validando estructura Maven..."
