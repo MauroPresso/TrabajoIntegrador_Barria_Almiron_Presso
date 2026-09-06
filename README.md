@@ -280,3 +280,42 @@ start .\docs\doxygen\html\index.html
 
 The Doxygen configuration includes all source and laboratory packages, private
 members, static members, local classes, local methods, and inline source code.
+
+## Laboratorios Maven - Clases 1 a 5
+
+La aplicacion principal conserva su arquitectura Maven JAR + Swing. Los conceptos
+Maven que no corresponde mezclar con la aplicacion principal se demuestran de forma
+aislada en:
+
+```text
+laboratorios-maven/
+```
+
+Cobertura:
+
+- archetypes y Maven Quickstart;
+- GAV y estructura estandar;
+- dependencias externas mediante Maven Central;
+- repositorio local `.m2`;
+- dependencias directas y transitivas;
+- scopes `compile`, `test`, `import` y `provided`;
+- plugins y goals;
+- goals ligados a fases;
+- `mvn site`;
+- `install` y `deploy`;
+- `distributionManagement`;
+- proyecto padre con `packaging` POM;
+- proyecto multimodulo y Maven Reactor;
+- dependencia entre modulos;
+- packaging JAR y WAR;
+- JSP;
+- Jetty y `jetty:run`.
+
+Guia:
+
+```text
+laboratorios-maven/README.md
+```
+
+La carpeta principal `src/` sigue siendo el SistemaDeAerolinea real. Los laboratorios
+son evidencia academica separada y no modifican las reglas de negocio ni la GUI Swing.

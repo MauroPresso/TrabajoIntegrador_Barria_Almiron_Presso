@@ -115,3 +115,43 @@ Reglas de negocio y estado del dominio, sin conocer persistencia.
 ### Que responsabilidad tiene PanelManager?
 
 Administrar navegacion, servicios de la UI, sincronizacion y actualizacion de modelos Swing.
+
+## Validacion de laboratorios Maven
+
+Los laboratorios especificos de Maven se encuentran en:
+
+```text
+laboratorios-maven/
+```
+
+Validacion completa:
+
+```powershell
+cd .\laboratorios-maven\01-archetype
+mvn clean test
+
+cd ..\02-dependencias
+mvn clean test
+mvn dependency:tree
+
+cd ..\03-plugins-goals-site
+mvn validate
+mvn clean package
+mvn exec:java
+mvn site
+
+cd ..\04-multimodulo
+mvn clean install
+
+cd ..\05-ciclo-repositorios
+mvn clean deploy
+```
+
+Para Jetty:
+
+```powershell
+cd .\laboratorios-maven\04-multimodulo
+mvn -pl aerolinea-web jetty:run
+```
+
+Luego abrir `http://localhost:8080/aerolinea/` y detener con `Ctrl+C`.

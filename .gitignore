@@ -14,8 +14,8 @@
 .DS_Store
 Thumbs.db
 
-# Salida estAndar de Maven
-/target/
+# Salida estandar de Maven
+target/
 
 # Doxygen generated output
 /docs/doxygen/html/

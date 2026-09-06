@@ -44,3 +44,8 @@ start .\docs\doxygen\html\index.html
 
 Generated HTML is intentionally not stored in Git because it can be recreated
 from source code and the Doxyfile.
+
+## Maven laboratory sources
+
+Doxygen also scans `laboratorios-maven` for Java and Markdown sources. Generated
+Maven `target/` directories remain excluded.

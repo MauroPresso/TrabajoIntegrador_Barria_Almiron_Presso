@@ -22,7 +22,8 @@ INPUT                   = README.md \
                           docs/GUIA_ESTUDIO.md \
                           docs/doxygen/README.md \
                           src/main/java \
-                          src/test/java
+                          src/test/java \
+                          laboratorios-maven
 
 FILE_PATTERNS           = *.java *.md
 RECURSIVE               = YES
@@ -52,7 +53,8 @@ HIDE_UNDOC_CLASSES      = NO
 
 FULL_PATH_NAMES         = NO
 STRIP_FROM_PATH         = src/main/java \
-                          src/test/java
+                          src/test/java \
+                          laboratorios-maven
 
 SOURCE_BROWSER          = YES
 INLINE_SOURCES          = YES
