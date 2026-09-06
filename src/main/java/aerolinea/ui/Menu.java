@@ -7,7 +7,8 @@ import aerolinea.dominio.Vuelo;
 import aerolinea.dominio.VueloCharter;
 import aerolinea.dominio.VueloInternacional;
 import aerolinea.dominio.VueloNacional;
-import aerolinea.servicio.Aerolinea;
+import aerolinea.dominio.Aerolinea;
+import aerolinea.servicio.Servicio;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -57,6 +58,11 @@ public class Menu {
     private final Aerolinea aerolinea;
 
     /**
+     * Servicio genÃ©rico encargado de persistir los vuelos.
+     */
+    private final Servicio<Vuelo> servicioVuelos;
+
+    /**
      * @brief Scanner utilizado para leer datos desde consola.
      */
     private final Scanner scanner;
@@ -73,10 +79,19 @@ public class Menu {
     /**
      * @brief Constructor del menú.
      *
-     * @param aerolinea Servicio principal del sistema.
+     * @param aerolinea Objeto principal del dominio.
      */
-    public Menu(Aerolinea aerolinea) {
+    public Menu(Aerolinea aerolinea, Servicio<Vuelo> servicioVuelos) {
+        if (aerolinea == null) {
+            throw new IllegalArgumentException("La aerolÃ­nea no puede ser nula.");
+        }
+
+        if (servicioVuelos == null) {
+            throw new IllegalArgumentException("El servicio de vuelos no puede ser nulo.");
+        }
+
         this.aerolinea = aerolinea;
+        this.servicioVuelos = servicioVuelos;
         this.scanner = new Scanner(System.in);
         this.cambiosSinGuardar = false;
     }
@@ -401,7 +416,8 @@ public class Menu {
         }
 
         try {
-            aerolinea.guardarVuelos();
+            servicioVuelos.reemplazarTodos(aerolinea.getVuelos());
+            servicioVuelos.guardar();
             cambiosSinGuardar = false;
             System.out.println("Vuelos guardados correctamente " + contexto + ".");
         } catch (IOException e) {

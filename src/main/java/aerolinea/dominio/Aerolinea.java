@@ -1,6 +1,5 @@
-package aerolinea.servicio;
+package aerolinea.dominio;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -8,152 +7,85 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import aerolinea.excepcion.VueloNoDisponibleException;
 import aerolinea.util.ComparadorVueloPorDestino;
 import aerolinea.util.ComparadorVueloPorNumero;
-import aerolinea.excepcion.VueloNoDisponibleException;
-import aerolinea.repositorio.IRepositorio;
-import aerolinea.dominio.EstadoVuelo;
-import aerolinea.dominio.Pasajero;
-import aerolinea.dominio.Persona;
-import aerolinea.dominio.Tripulante;
-import aerolinea.dominio.Vuelo;
 
 /**
  * @file Aerolinea.java
- * @brief Contiene la clase de servicio principal del sistema de aerolínea.
+ * @brief Objeto principal del dominio del sistema de aerolÃ­nea.
  */
 
 /**
  * @class Aerolinea
- * @brief Clase de servicio principal para gestionar vuelos, pasajeros y tripulantes.
+ * @brief Gestiona vuelos, pasajeros y tripulantes como reglas del dominio.
  *
- * Esta clase concentra la lógica principal del sistema y el uso del Java
- * Collection Framework:
+ * <p>Esta clase no conoce archivos, repositorios ni mecanismos de
+ * persistencia. Su responsabilidad es representar y operar el estado de una
+ * aerolÃ­nea mediante objetos y colecciones Java.</p>
  *
- * - ArrayList<Vuelo> para almacenar los vuelos de la aerolínea.
- * - HashMap<Integer, Persona> para indexar personas por DNI.
- * - HashSet<Persona> para evitar duplicados entre pasajeros con reservas activas.
- * - Collections.sort() para ordenar personas y vuelos.
- *
- * Además, esta clase puede trabajar con un IRepositorio<Vuelo> para cargar y
- * guardar la lista de vuelos mediante serialización, sin depender directamente
- * de una implementación concreta de archivo.
+ * <p>Conceptos demostrados:</p>
+ * <ul>
+ *   <li>List y ArrayList para vuelos.</li>
+ *   <li>HashMap para indexar personas por DNI.</li>
+ *   <li>HashSet para evitar duplicados de pasajeros con reserva activa.</li>
+ *   <li>Comparable, Comparator y Collections.sort().</li>
+ *   <li>Streams, lambdas y referencias a mÃ©todos.</li>
+ *   <li>Herencia, polimorfismo y excepciones de negocio.</li>
+ * </ul>
  */
 public class Aerolinea {
 
-    /** Nombre comercial de la aerolínea. */
+    /** Nombre comercial de la aerolÃ­nea. */
     private final String nombre;
 
-    /** Lista de vuelos de la aerolínea. */
-    private final ArrayList<Vuelo> vuelos;
+    /** Vuelos administrados por el dominio. */
+    private final List<Vuelo> vuelos;
 
-    /** Mapa de personas indexadas por DNI. */
+    /** Personas indexadas por DNI. */
     private final HashMap<Integer, Persona> personasPorDni;
 
-    /** Conjunto de pasajeros con al menos una reserva activa. */
+    /** Pasajeros que poseen al menos una reserva activa. */
     private final HashSet<Persona> pasajerosConReservaActiva;
 
-    /** Repositorio utilizado para persistir y recuperar vuelos. */
-    private final IRepositorio<Vuelo> repositorioVuelos;
-
     /**
-     * @brief Constructor de Aerolinea sin persistencia.
+     * Crea una aerolÃ­nea vacÃ­a, completamente en memoria.
      *
-     * Este constructor se mantiene para conservar compatibilidad con pruebas
-     * anteriores del proyecto. La aerolínea funcionará en memoria, pero no
-     * cargará ni guardará vuelos en archivo.
-     *
-     * @param nombre Nombre de la aerolínea.
+     * @param nombre nombre comercial de la aerolÃ­nea
      */
     public Aerolinea(String nombre) {
-        this(nombre, null);
+        this(nombre, new ArrayList<>());
     }
 
     /**
-     * @brief Constructor de Aerolinea con repositorio de persistencia.
+     * Crea una aerolÃ­nea a partir de una colecciÃ³n inicial de vuelos.
      *
-     * Inicializa las colecciones internas y, si recibe un repositorio válido,
-     * intenta cargar los vuelos guardados previamente.
+     * <p>La colecciÃ³n recibida se copia. De este modo el objeto de dominio
+     * conserva su propio estado y no queda acoplado a la colecciÃ³n interna de
+     * un servicio o repositorio.</p>
      *
-     * @param nombre Nombre de la aerolínea.
-     * @param repositorioVuelos Repositorio usado para cargar y guardar vuelos.
+     * @param nombre nombre comercial de la aerolÃ­nea
+     * @param vuelosIniciales vuelos con los que se inicializa el dominio
      */
-    public Aerolinea(String nombre, IRepositorio<Vuelo> repositorioVuelos) {
-        this.nombre = validarTextoObligatorio(nombre, "nombre de la aerolínea");
-        this.vuelos = new ArrayList<>();
+    public Aerolinea(String nombre, List<Vuelo> vuelosIniciales) {
+        this.nombre = validarTextoObligatorio(nombre, "nombre de la aerolÃ­nea");
+
+        if (vuelosIniciales == null) {
+            throw new IllegalArgumentException("La lista inicial de vuelos no puede ser nula.");
+        }
+
+        this.vuelos = new ArrayList<>(vuelosIniciales);
         this.personasPorDni = new HashMap<>();
         this.pasajerosConReservaActiva = new HashSet<>();
-        this.repositorioVuelos = repositorioVuelos;
 
-        cargarVuelosPersistidos();
+        reconstruirPersonasDesdeVuelos();
     }
-
     /**
-     * @brief Carga vuelos persistidos desde el repositorio configurado.
+     * @brief Reconstruye las colecciones auxiliares de personas a partir de los vuelos del dominio.
      *
-     * Si no existe repositorio, el método no realiza ninguna acción.
-     * Si el archivo no existe, el repositorio devuelve una lista vacía.
-     *
-     * Luego de cargar los vuelos, reconstruye el HashMap de personas y el
-     * HashSet de pasajeros con reserva activa a partir de los pasajeros y
-     * tripulantes contenidos dentro de los vuelos recuperados.
-     */
-    private void cargarVuelosPersistidos() {
-        if (repositorioVuelos == null) {
-            return;
-        }
-
-        try {
-            List<Vuelo> vuelosGuardados = repositorioVuelos.consultar();
-
-            vuelos.clear();
-
-            if (vuelosGuardados != null) {
-                vuelos.addAll(vuelosGuardados);
-            }
-
-            reconstruirPersonasDesdeVuelos();
-
-            if (!vuelos.isEmpty()) {
-                System.out.println("Vuelos cargados desde archivo: " + vuelos.size());
-            }
-
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("No se pudieron cargar los vuelos guardados: " + e.getMessage());
-        }
-    }
-
-    /**
-     * @brief Guarda la lista actual de vuelos usando el repositorio configurado.
-     *
-     * Si la aerolínea fue creada sin repositorio, el método no realiza ninguna
-     * acción. Esto permite conservar compatibilidad con pruebas en memoria.
-     *
-     * @throws IOException Si ocurre un error durante la escritura del archivo.
-     */
-    public void guardarVuelos() throws IOException {
-        if (repositorioVuelos == null) {
-            return;
-        }
-
-        repositorioVuelos.guardar(new ArrayList<>(vuelos));
-    }
-
-    /**
-     * @brief Indica si la aerolínea tiene un repositorio de persistencia configurado.
-     *
-     * @return true si existe un repositorio de vuelos, false en caso contrario.
-     */
-    public boolean tienePersistenciaHabilitada() {
-        return repositorioVuelos != null;
-    }
-
-    /**
-     * @brief Reconstruye las colecciones de personas a partir de los vuelos cargados.
-     *
-     * Como el requerimiento del TP pide persistir la lista de vuelos, los
-     * pasajeros y tripulantes asociados a esos vuelos se recuperan desde el
-     * propio grafo de objetos serializado.
+     * Los pasajeros y tripulantes asociados a cada vuelo forman parte del mismo
+     * grafo de objetos del dominio. A partir de ellos se reconstruyen los Ã­ndices
+     * auxiliares utilizados por la aerolÃ­nea.
      */
     private void reconstruirPersonasDesdeVuelos() {
         personasPorDni.clear();
@@ -161,7 +93,7 @@ public class Aerolinea {
 
         for (Vuelo vuelo : vuelos) {
             for (Pasajero pasajero : vuelo.getPasajeros()) {
-                registrarPersonaRecuperada(pasajero);
+                registrarPersonaAsociada(pasajero);
 
                 if (pasajero.tieneReservaActiva()) {
                     pasajerosConReservaActiva.add(pasajero);
@@ -169,20 +101,20 @@ public class Aerolinea {
             }
 
             for (Tripulante tripulante : vuelo.getTripulacion()) {
-                registrarPersonaRecuperada(tripulante);
+                registrarPersonaAsociada(tripulante);
             }
         }
     }
 
     /**
-     * @brief Registra una persona recuperada desde el archivo.
+     * @brief Registra una persona asociada a los vuelos iniciales.
      *
      * Si ya existe una persona con el mismo DNI, se conserva la primera
      * encontrada para evitar duplicados.
      *
-     * @param persona Persona recuperada desde los vuelos serializados.
+     * @param persona Persona asociada a alguno de los vuelos del dominio.
      */
-    private void registrarPersonaRecuperada(Persona persona) {
+    private void registrarPersonaAsociada(Persona persona) {
         if (persona != null && !personasPorDni.containsKey(persona.getDni())) {
             personasPorDni.put(persona.getDni(), persona);
         }

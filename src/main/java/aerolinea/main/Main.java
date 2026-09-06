@@ -1,39 +1,42 @@
 package aerolinea.main;
 
-import aerolinea.repositorio.IRepositorio;
-import aerolinea.ui.Menu;
+import aerolinea.dominio.Aerolinea;
 import aerolinea.dominio.Vuelo;
+import aerolinea.repositorio.IRepositorio;
 import aerolinea.repositorio.RepositorioArchivo;
-import aerolinea.servicio.Aerolinea;
+import aerolinea.servicio.Servicio;
+import aerolinea.ui.Menu;
 
 /**
- * @file Main.java
- * @brief Punto de entrada principal del sistema de aerolínea.
- */
-
-/**
- * @class Main
- * @brief Clase principal desde donde inicia la aplicación.
+ * Punto de entrada principal del Sistema de AerolÃ­nea.
  *
- * Crea el repositorio de vuelos, inicializa la aerolínea con persistencia
- * y ejecuta el menú interactivo por consola.
+ * <p>Main ensambla las capas de la aplicaciÃ³n:</p>
+ *
+ * <pre>
+ * RepositorioArchivo&lt;Vuelo&gt;
+ *          â†“
+ *     Servicio&lt;Vuelo&gt;
+ *          â†“
+ *       Aerolinea
+ *          â†“
+ *         Menu
+ * </pre>
  */
 public class Main {
 
-    /**
-     * @brief Método principal del programa.
-     *
-     * Inicializa un repositorio basado en archivo para permitir que la lista
-     * de vuelos se cargue desde data/vuelos.dat al iniciar el sistema.
-     *
-     * @param args Argumentos de consola no utilizados.
-     */
     public static void main(String[] args) {
-        IRepositorio<Vuelo> repositorioVuelos = new RepositorioArchivo<Vuelo>("data/vuelos.dat");
+        IRepositorio<Vuelo> repositorioVuelos =
+                new RepositorioArchivo<>("data/vuelos.dat");
 
-        Aerolinea aerolinea = new Aerolinea("Aerolínea IFES", repositorioVuelos);
+        Servicio<Vuelo> servicioVuelos =
+                new Servicio<>(repositorioVuelos);
 
-        Menu menu = new Menu(aerolinea);
+        Aerolinea aerolinea =
+                new Aerolinea("AerolÃ­nea IFES", servicioVuelos.listar());
+
+        Menu menu =
+                new Menu(aerolinea, servicioVuelos);
+
         menu.iniciar();
     }
 }

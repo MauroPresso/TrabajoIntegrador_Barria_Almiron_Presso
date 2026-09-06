@@ -81,6 +81,21 @@ public class Servicio<T> implements IServicio<T> {
         repositorio.guardar(new ArrayList<>(elementos));
     }
 
+    /**
+     * Reemplaza la colecciÃ³n administrada por una copia del estado recibido.
+     *
+     * <p>Permite sincronizar una capa de dominio con el servicio sin hacer que
+     * el dominio conozca repositorios o archivos.</p>
+     */
+    public void reemplazarTodos(List<T> nuevosElementos) {
+        if (nuevosElementos == null) {
+            throw new IllegalArgumentException("La lista de elementos no puede ser nula.");
+        }
+
+        elementos.clear();
+        elementos.addAll(nuevosElementos);
+    }
+
     public IRepositorio<T> getRepositorio() {
         return repositorio;
     }
