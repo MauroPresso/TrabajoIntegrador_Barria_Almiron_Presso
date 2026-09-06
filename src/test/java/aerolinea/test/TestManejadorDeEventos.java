@@ -3,7 +3,7 @@ package aerolinea.test;
 import javax.swing.JButton;
 
 /**
- * Laboratorio de programaciÃ³n orientada a eventos.
+ * Laboratorio de programacion orientada a eventos.
  */
 public class TestManejadorDeEventos {
 
@@ -20,7 +20,7 @@ public class TestManejadorDeEventos {
                 new ManejadorDeEventos();
 
         /*
-         * Forma clÃ¡sica:
+         * Forma clasica:
          * una clase implementa ActionListener y se registra como listener.
          */
         boton.addActionListener(manejador);
@@ -31,11 +31,11 @@ public class TestManejadorDeEventos {
                 manejador.getUltimoComando())) {
 
             throw new IllegalStateException(
-                    "El ActionListener no recibiÃ³ el evento esperado.");
+                    "El ActionListener no recibio el evento esperado.");
         }
 
         /*
-         * El proyecto tambiÃ©n utiliza la forma lambda:
+         * El proyecto tambien utiliza la forma lambda:
          *
          * boton.addActionListener(
          *     evento -> System.out.println(evento.getActionCommand())
@@ -43,7 +43,7 @@ public class TestManejadorDeEventos {
          */
 
         System.out.println(
-                "ActionListener explÃ­cito: OK");
+                "ActionListener explicito: OK");
 
         System.out.println(
                 "TestManejadorDeEventos finalizado correctamente.");

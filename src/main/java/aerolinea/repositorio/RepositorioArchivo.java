@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Repositorio genÃ©rico basado en serializaciÃ³n Java.
+ * Repositorio generico basado en serializacion Java.
  *
  * <p>La clase no conoce el tipo concreto que persiste. Puede utilizarse,
  * por ejemplo, como {@code RepositorioArchivo<Vuelo>} o
@@ -30,14 +30,14 @@ public class RepositorioArchivo<T> implements IRepositorio<T> {
      */
     public RepositorioArchivo(String rutaArchivo) {
         if (rutaArchivo == null || rutaArchivo.trim().isEmpty()) {
-            throw new IllegalArgumentException("La ruta del archivo no puede estar vacÃ­a.");
+            throw new IllegalArgumentException("La ruta del archivo no puede estar vacia.");
         }
 
         this.rutaArchivo = Path.of(rutaArchivo);
     }
 
     /**
-     * Guarda la lista completa de elementos mediante serializaciÃ³n.
+     * Guarda la lista completa de elementos mediante serializacion.
      */
     @Override
     public void guardar(List<T> elementos) throws IOException {
@@ -61,8 +61,8 @@ public class RepositorioArchivo<T> implements IRepositorio<T> {
     /**
      * Recupera la lista serializada.
      *
-     * <p>Por el borrado de tipos (type erasure) de Java, el tipo genÃ©rico T
-     * no puede verificarse directamente en tiempo de ejecuciÃ³n. La coherencia
+     * <p>Por el borrado de tipos (type erasure) de Java, el tipo generico T
+     * no puede verificarse directamente en tiempo de ejecucion. La coherencia
      * del tipo queda garantizada por el uso consistente del repositorio.</p>
      */
     @Override
@@ -78,7 +78,7 @@ public class RepositorioArchivo<T> implements IRepositorio<T> {
             Object objetoLeido = entrada.readObject();
 
             if (!(objetoLeido instanceof List<?>)) {
-                throw new IOException("El archivo no contiene una lista vÃ¡lida.");
+                throw new IOException("El archivo no contiene una lista valida.");
             }
 
             return new ArrayList<>((List<T>) objetoLeido);

@@ -13,7 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
- * Prueba de integraciÃ³n entre dominio, TableModel y persistencia dual.
+ * Prueba de integracion entre dominio, TableModel y persistencia dual.
  */
 public class UiDatosTest {
 
@@ -40,7 +40,7 @@ public class UiDatosTest {
 
         Aerolinea aerolinea =
                 new Aerolinea(
-                        "AerolÃ­nea Test",
+                        "Aerolinea Test",
                         servicioVuelos.listar(),
                         servicioPersonas.listar());
 
@@ -53,7 +53,7 @@ public class UiDatosTest {
         Vuelo vuelo =
                 new VueloNacional(
                         "AR900",
-                        "NeuquÃ©n",
+                        "Neuquen",
                         "Buenos Aires",
                         "2027-01-10",
                         180,
@@ -115,7 +115,7 @@ public class UiDatosTest {
 
         Aerolinea recargada =
                 new Aerolinea(
-                        "AerolÃ­nea Recargada",
+                        "Aerolinea Recargada",
                         vuelosRecargados.listar(),
                         personasRecargadas.listar());
 
@@ -129,7 +129,7 @@ public class UiDatosTest {
                 || !(personaRecargada instanceof Pasajero)) {
 
             throw new IllegalStateException(
-                    "La persistencia dual no recuperÃ³ los datos.");
+                    "La persistencia dual no recupero los datos.");
         }
 
         Pasajero pasajeroRecargado =
@@ -139,7 +139,7 @@ public class UiDatosTest {
                 .tieneVueloReservado(vueloRecargado)) {
 
             throw new IllegalStateException(
-                    "La reserva no se recuperÃ³ correctamente.");
+                    "La reserva no se recupero correctamente.");
         }
 
         Files.deleteIfExists(vuelosPath);

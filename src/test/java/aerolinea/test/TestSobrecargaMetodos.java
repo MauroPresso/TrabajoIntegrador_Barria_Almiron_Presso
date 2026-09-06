@@ -3,7 +3,7 @@ package aerolinea.test;
 import aerolinea.util.CalculadoraTarifas;
 
 /**
- * Laboratorio de sobrecarga de mÃ©todos.
+ * Laboratorio de sobrecarga de metodos.
  */
 public class TestSobrecargaMetodos {
 
@@ -24,7 +24,7 @@ public class TestSobrecargaMetodos {
         System.out.println("Varargs de importes: " + importesIndividuales);
 
         if (grupo != 375000.0) {
-            throw new IllegalStateException("Resultado inesperado en sobrecarga de 2 parÃ¡metros.");
+            throw new IllegalStateException("Resultado inesperado en sobrecarga de 2 parametros.");
         }
 
         if (importesIndividuales != 473000.0) {

@@ -19,7 +19,7 @@ import java.awt.GridLayout;
 import java.io.IOException;
 
 /**
- * Panel anÃ¡logo a la operaciÃ³n "Prestar" de Biblioteca:
+ * Panel analogo a la operacion "Prestar" de Biblioteca:
  * vincula un Pasajero con un Vuelo mediante una reserva.
  */
 public class PanelReservas extends JPanel {
@@ -49,7 +49,7 @@ public class PanelReservas extends JPanel {
         formulario.add(new JLabel("DNI del pasajero:"));
         formulario.add(campoDni);
 
-        formulario.add(new JLabel("NÃºmero de vuelo:"));
+        formulario.add(new JLabel("Numero de vuelo:"));
         formulario.add(campoVuelo);
 
         JPanel botones =
@@ -110,7 +110,7 @@ public class PanelReservas extends JPanel {
                     "Reserva realizada correctamente.");
 
         } catch (NumberFormatException e) {
-            mostrarError("El DNI debe ser numÃ©rico.");
+            mostrarError("El DNI debe ser numerico.");
 
         } catch (VueloNoDisponibleException
                  | IllegalArgumentException
@@ -141,7 +141,7 @@ public class PanelReservas extends JPanel {
                     "Reserva cancelada correctamente.");
 
         } catch (NumberFormatException e) {
-            mostrarError("El DNI debe ser numÃ©rico.");
+            mostrarError("El DNI debe ser numerico.");
 
         } catch (IllegalArgumentException | IOException e) {
             mostrarError(e.getMessage());
@@ -154,7 +154,7 @@ public class PanelReservas extends JPanel {
 
         if (numeroVuelo.isEmpty()) {
             throw new IllegalArgumentException(
-                    "Debe ingresar el nÃºmero de vuelo.");
+                    "Debe ingresar el numero de vuelo.");
         }
 
         Persona persona =
@@ -183,7 +183,7 @@ public class PanelReservas extends JPanel {
         JOptionPane.showMessageDialog(
                 this,
                 mensaje,
-                "OperaciÃ³n no realizada",
+                "Operacion no realizada",
                 JOptionPane.ERROR_MESSAGE);
     }
 

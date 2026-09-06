@@ -15,7 +15,7 @@ import java.util.List;
 public class TableVuelosModel extends AbstractTableModel {
 
     private final String[] columnas = {
-            "NÃºmero", "Tipo", "Origen", "Destino",
+            "Numero", "Tipo", "Origen", "Destino",
             "Fecha", "Estado", "Ocupados", "Capacidad"
     };
 
@@ -23,7 +23,7 @@ public class TableVuelosModel extends AbstractTableModel {
 
     public TableVuelosModel(Aerolinea aerolinea) {
         if (aerolinea == null) {
-            throw new IllegalArgumentException("La aerolÃ­nea no puede ser nula.");
+            throw new IllegalArgumentException("La aerolinea no puede ser nula.");
         }
 
         this.aerolinea = aerolinea;

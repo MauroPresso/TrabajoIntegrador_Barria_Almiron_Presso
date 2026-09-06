@@ -2,7 +2,7 @@ package aerolinea.dominio;
 
 /**
  * @interface IOperable
- * @brief Define operaciones básicas que puede realizar un vuelo.
+ * @brief Define operaciones basicas que puede realizar un vuelo.
  */
 public interface IOperable {
 
@@ -12,7 +12,7 @@ public interface IOperable {
     void embarcar();
 
     /**
-     * @brief Cancela la operación del vuelo.
+     * @brief Cancela la operacion del vuelo.
      */
     void cancelar();
 }

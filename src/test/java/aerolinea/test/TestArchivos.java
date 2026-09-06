@@ -16,10 +16,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
- * Laboratorio de entrada/salida y serializaciÃ³n.
+ * Laboratorio de entrada/salida y serializacion.
  *
  * <p>Todos los archivos se generan dentro de target/laboratorio-archivos,
- * por lo que no contaminan el cÃ³digo fuente ni el repositorio Git.</p>
+ * por lo que no contaminan el codigo fuente ni el repositorio Git.</p>
  */
 public class TestArchivos {
 
@@ -36,7 +36,7 @@ public class TestArchivos {
         System.out.println("=== FileWriter / FileReader ===");
 
         try (FileWriter writer = new FileWriter(texto.toFile())) {
-            writer.write("Sistema de AerolÃ­nea");
+            writer.write("Sistema de Aerolinea");
         }
 
         try (FileReader reader = new FileReader(texto.toFile())) {
@@ -98,7 +98,7 @@ public class TestArchivos {
         System.out.println("=== ObjectOutputStream / ObjectInputStream ===");
 
         Pasajero pasajeroOriginal =
-                new Pasajero(33444555, "MarÃ­a", "LÃ³pez", "AR33444555");
+                new Pasajero(33444555, "Maria", "Lopez", "AR33444555");
 
         try (ObjectOutputStream salida =
                      new ObjectOutputStream(new FileOutputStream(objeto.toFile()))) {
@@ -120,7 +120,7 @@ public class TestArchivos {
                 + pasajeroRecuperado.getDni());
 
         if (!pasajeroOriginal.equals(pasajeroRecuperado)) {
-            throw new IllegalStateException("La serializaciÃ³n no preservÃ³ la identidad lÃ³gica.");
+            throw new IllegalStateException("La serializacion no preservo la identidad logica.");
         }
 
         System.out.println("Archivos del laboratorio: " + carpeta.toAbsolutePath());

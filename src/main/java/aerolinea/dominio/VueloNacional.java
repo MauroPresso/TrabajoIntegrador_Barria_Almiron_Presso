@@ -2,7 +2,7 @@ package aerolinea.dominio;
 
 /**
  * @class VueloNacional
- * @brief Representa un vuelo realizado dentro del país.
+ * @brief Representa un vuelo realizado dentro del pais.
  */
 public class VueloNacional extends Vuelo {
 
@@ -12,11 +12,11 @@ public class VueloNacional extends Vuelo {
 
     /**
      * @brief Crea un vuelo nacional.
-     * @param numero Número del vuelo.
+     * @param numero Numero del vuelo.
      * @param origen Origen del vuelo.
      * @param destino Destino del vuelo.
      * @param fecha Fecha del vuelo.
-     * @param capacidad Capacidad máxima de pasajeros.
+     * @param capacidad Capacidad maxima de pasajeros.
      * @param provinciaDestino Provincia de destino.
      */
     public VueloNacional(String numero, String origen, String destino, String fecha, int capacidad,
@@ -32,11 +32,11 @@ public class VueloNacional extends Vuelo {
     /**
      * @brief Establece la provincia de destino del vuelo nacional.
      * @param provinciaDestino Nombre de la provincia de destino.
-     * @throws IllegalArgumentException Si el nombre de la provincia es inválido.
+     * @throws IllegalArgumentException Si el nombre de la provincia es invalido.
      */
     public void setProvinciaDestino(String provinciaDestino) {
         if (provinciaDestino == null || provinciaDestino.trim().isEmpty()) {
-            throw new IllegalArgumentException("La provincia de destino no puede estar vacía.");
+            throw new IllegalArgumentException("La provincia de destino no puede estar vacia.");
         }
         this.provinciaDestino = provinciaDestino.trim();
     }
@@ -51,7 +51,7 @@ public class VueloNacional extends Vuelo {
     }
 
     /**
-     * @brief Devuelve información específica del vuelo nacional.
+     * @brief Devuelve informacion especifica del vuelo nacional.
      * @return Detalle del vuelo nacional.
      */
     @Override

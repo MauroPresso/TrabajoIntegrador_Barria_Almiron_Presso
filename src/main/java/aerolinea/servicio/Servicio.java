@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ImplementaciÃ³n genÃ©rica de servicio respaldada por un repositorio.
+ * Implementacion generica de servicio respaldada por un repositorio.
  *
- * <p>La clase aplica composiciÃ³n y genÃ©ricos: Servicio&lt;T&gt; trabaja contra
- * la abstracciÃ³n IRepositorio&lt;T&gt;, no contra una implementaciÃ³n concreta.</p>
+ * <p>La clase aplica composicion y genericos: Servicio&lt;T&gt; trabaja contra
+ * la abstraccion IRepositorio&lt;T&gt;, no contra una implementacion concreta.</p>
  *
  * @param <T> tipo de elemento administrado
  */
@@ -22,8 +22,8 @@ public class Servicio<T> implements IServicio<T> {
     /**
      * Inicializa el servicio recuperando los elementos persistidos.
      *
-     * <p>Si todavÃ­a no hay datos, comienza con una lista vacÃ­a. Si existe un
-     * problema de lectura, se informa y se permite iniciar el servicio vacÃ­o,
+     * <p>Si todavia no hay datos, comienza con una lista vacia. Si existe un
+     * problema de lectura, se informa y se permite iniciar el servicio vacio,
      * manteniendo el criterio tolerante utilizado por el sistema actual.</p>
      */
     public Servicio(IRepositorio<T> repositorio) {
@@ -47,10 +47,10 @@ public class Servicio<T> implements IServicio<T> {
     }
 
     /**
-     * Agrega un elemento a la colecciÃ³n administrada.
+     * Agrega un elemento a la coleccion administrada.
      *
-     * <p>La persistencia explÃ­cita se realiza mediante {@link #guardar()}.
-     * Esto es Ãºtil en el Sistema de AerolÃ­nea porque algunas operaciones
+     * <p>La persistencia explicita se realiza mediante {@link #guardar()}.
+     * Esto es util en el Sistema de Aerolinea porque algunas operaciones
      * modifican objetos ya existentes, por ejemplo una reserva dentro de un vuelo.</p>
      */
     @Override
@@ -66,7 +66,7 @@ public class Servicio<T> implements IServicio<T> {
      * Devuelve una vista de la lista administrada.
      *
      * <p>La lista representa el estado administrado por el servicio. La capa de
-     * dominio recibe una copia al inicializarse y se sincroniza explÃ­citamente
+     * dominio recibe una copia al inicializarse y se sincroniza explicitamente
      * mediante reemplazarTodos() antes de persistir.</p>
      */
     @Override
@@ -75,14 +75,14 @@ public class Servicio<T> implements IServicio<T> {
     }
 
     /**
-     * Persiste el estado actual de la colecciÃ³n.
+     * Persiste el estado actual de la coleccion.
      */
     public void guardar() throws IOException {
         repositorio.guardar(new ArrayList<>(elementos));
     }
 
     /**
-     * Reemplaza la colecciÃ³n administrada por una copia del estado recibido.
+     * Reemplaza la coleccion administrada por una copia del estado recibido.
      *
      * <p>Permite sincronizar una capa de dominio con el servicio sin hacer que
      * el dominio conozca repositorios o archivos.</p>

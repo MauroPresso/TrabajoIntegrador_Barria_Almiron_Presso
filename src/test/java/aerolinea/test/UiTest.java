@@ -11,7 +11,7 @@ import aerolinea.ui.PanelManager;
 import javax.swing.SwingUtilities;
 
 /**
- * Prueba headless de CardLayout despuÃ©s de incorporar formularios y tablas.
+ * Prueba headless de CardLayout despues de incorporar formularios y tablas.
  */
 public class UiTest {
 
@@ -35,7 +35,7 @@ public class UiTest {
 
             Aerolinea aerolinea =
                     new Aerolinea(
-                            "AerolÃ­nea UI Test",
+                            "Aerolinea UI Test",
                             vuelos.listar(),
                             personas.listar());
 
@@ -55,7 +55,7 @@ public class UiTest {
 
                 if (manager.getPanelActual() != panel) {
                     throw new IllegalStateException(
-                            "FallÃ³ navegaciÃ³n a " + panel);
+                            "Fallo navegacion a " + panel);
                 }
             }
 

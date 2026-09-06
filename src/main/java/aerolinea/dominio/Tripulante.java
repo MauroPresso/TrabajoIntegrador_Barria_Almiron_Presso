@@ -2,7 +2,7 @@ package aerolinea.dominio;
 
 /**
  * @class Tripulante
- * @brief Representa a una persona que forma parte de la tripulación.
+ * @brief Representa a una persona que forma parte de la tripulacion.
  */
 public class Tripulante extends Persona {
 
@@ -17,7 +17,7 @@ public class Tripulante extends Persona {
      * @param nombre Nombre del tripulante.
      * @param apellido Apellido del tripulante.
      * @param legajo Legajo interno del tripulante.
-     * @param rol Rol o función dentro del vuelo.
+     * @param rol Rol o funcion dentro del vuelo.
      */
     public Tripulante(int dni, String nombre, String apellido, int legajo, String rol) {
         super(dni, nombre, apellido);
@@ -58,7 +58,7 @@ public class Tripulante extends Persona {
      */
     public void setRol(String rol) {
         if (rol == null || rol.trim().isEmpty()) {
-            throw new IllegalArgumentException("El rol no puede estar vacío.");
+            throw new IllegalArgumentException("El rol no puede estar vacio.");
         }
         this.rol = rol.trim();
     }

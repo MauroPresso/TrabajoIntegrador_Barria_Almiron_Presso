@@ -1,18 +1,18 @@
 # Compilados Java
 *.class
 
-# Carpeta de salida de compilación
+# Carpeta de salida de compilacion
 /bin/
 
 # Datos serializados generados por el programa
 /data/*.dat
 
-# Configuración local de VS Code
+# Configuracion local de VS Code
 .vscode/
 
 # Archivos temporales del sistema
 .DS_Store
 Thumbs.db
 
-# Salida estÃ¡ndar de Maven
+# Salida estAndar de Maven
 /target/

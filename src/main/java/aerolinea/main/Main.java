@@ -13,7 +13,7 @@ import javax.swing.SwingUtilities;
 import java.util.Arrays;
 
 /**
- * Punto de entrada del Sistema de AerolÃ­nea.
+ * Punto de entrada del Sistema de Aerolinea.
  */
 public class Main {
 
@@ -35,7 +35,7 @@ public class Main {
 
         Aerolinea aerolinea =
                 new Aerolinea(
-                        "AerolÃ­nea IFES",
+                        "Aerolinea IFES",
                         servicioVuelos.listar(),
                         servicioPersonas.listar());
 

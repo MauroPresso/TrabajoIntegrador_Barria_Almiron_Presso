@@ -17,15 +17,15 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Laboratorio del Java Collections Framework aplicado al dominio aeronÃ¡utico.
+ * Laboratorio del Java Collections Framework aplicado al dominio aeronautico.
  */
 public class JavaCollectionFrameworkTest {
 
     public static void main(String[] args) {
 
         Pasajero ana = new Pasajero(30111222, "Ana", "Ruiz", "AR30111222");
-        Pasajero luis = new Pasajero(28444555, "Luis", "PÃ©rez", "");
-        Tripulante juan = new Tripulante(25666777, "Juan", "GonzÃ¡lez", 1001, "Comandante");
+        Pasajero luis = new Pasajero(28444555, "Luis", "Perez", "");
+        Tripulante juan = new Tripulante(25666777, "Juan", "Gonzalez", 1001, "Comandante");
 
         System.out.println("=== LIST ===");
 
@@ -37,7 +37,7 @@ public class JavaCollectionFrameworkTest {
         System.out.println("Cantidad: " + personas.size());
 
         for (int i = 0; i < personas.size(); i++) {
-            System.out.println("PosiciÃ³n " + i + ": " + personas.get(i).getNombreCompleto());
+            System.out.println("Posicion " + i + ": " + personas.get(i).getNombreCompleto());
         }
 
         System.out.println();
@@ -48,11 +48,11 @@ public class JavaCollectionFrameworkTest {
         personasUnicas.add(luis);
         personasUnicas.add(juan);
 
-        // Mismo DNI que Ana: Persona.equals/hashCode lo considera la misma identidad lÃ³gica.
-        personasUnicas.add(new Pasajero(30111222, "Ana MarÃ­a", "Ruiz", "OTRO"));
+        // Mismo DNI que Ana: Persona.equals/hashCode lo considera la misma identidad logica.
+        personasUnicas.add(new Pasajero(30111222, "Ana Maria", "Ruiz", "OTRO"));
 
         System.out.println("Elementos intentados: 4");
-        System.out.println("Elementos Ãºnicos: " + personasUnicas.size());
+        System.out.println("Elementos unicos: " + personasUnicas.size());
 
         System.out.println();
         System.out.println("=== MAP ===");
@@ -91,18 +91,18 @@ public class JavaCollectionFrameworkTest {
         List<Vuelo> vuelos = new ArrayList<>();
 
         vuelos.add(new VueloNacional(
-                "AR300", "NeuquÃ©n", "CÃ³rdoba", "2026-11-01", 150, "CÃ³rdoba"));
+                "AR300", "Neuquen", "Cordoba", "2026-11-01", 150, "Cordoba"));
 
         vuelos.add(new VueloNacional(
-                "AR100", "NeuquÃ©n", "Buenos Aires", "2026-11-01", 180, "Buenos Aires"));
+                "AR100", "Neuquen", "Buenos Aires", "2026-11-01", 180, "Buenos Aires"));
 
         vuelos.add(new VueloNacional(
-                "AR200", "NeuquÃ©n", "Bariloche", "2026-11-01", 120, "RÃ­o Negro"));
+                "AR200", "Neuquen", "Bariloche", "2026-11-01", 120, "Rio Negro"));
 
-        // Orden natural: compareTo() de Vuelo -> nÃºmero.
+        // Orden natural: compareTo() de Vuelo -> numero.
         Collections.sort(vuelos);
 
-        System.out.println("Orden natural por nÃºmero:");
+        System.out.println("Orden natural por numero:");
         vuelos.forEach(v -> System.out.println(v.getNumero()));
 
         // Otro criterio: Comparator externo -> destino.

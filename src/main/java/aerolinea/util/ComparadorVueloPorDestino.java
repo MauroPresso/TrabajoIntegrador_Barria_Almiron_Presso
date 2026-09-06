@@ -16,11 +16,11 @@ public class ComparadorVueloPorDestino implements Comparator<Vuelo> {
     /**
      * @brief Compara dos vuelos por destino.
      *
-     * Si ambos destinos son iguales, se ordena por número de vuelo.
+     * Si ambos destinos son iguales, se ordena por numero de vuelo.
      *
      * @param vuelo1 Primer vuelo.
      * @param vuelo2 Segundo vuelo.
-     * @return Valor negativo, cero o positivo según el orden.
+     * @return Valor negativo, cero o positivo segun el orden.
      */
     @Override
     public int compare(Vuelo vuelo1, Vuelo vuelo2) {

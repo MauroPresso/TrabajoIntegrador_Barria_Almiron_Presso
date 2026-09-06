@@ -13,7 +13,7 @@ import javax.swing.JMenuItem;
 import java.awt.BorderLayout;
 
 /**
- * Ventana principal Swing del Sistema de AerolÃ­nea.
+ * Ventana principal Swing del Sistema de Aerolinea.
  */
 public class Ventana extends JFrame {
 
@@ -24,7 +24,7 @@ public class Ventana extends JFrame {
             Servicio<Vuelo> servicioVuelos,
             Servicio<Persona> servicioPersonas) {
 
-        super("Sistema de AerolÃ­nea IFES");
+        super("Sistema de Aerolinea IFES");
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(950, 650);

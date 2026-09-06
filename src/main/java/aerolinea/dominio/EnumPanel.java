@@ -1,7 +1,7 @@
 package aerolinea.dominio;
 
 /**
- * Vistas disponibles en la interfaz grÃ¡fica.
+ * Vistas disponibles en la interfaz grafica.
  *
  * <p>Los valores se utilizan como identificadores del CardLayout.</p>
  */

@@ -2,7 +2,7 @@ package aerolinea.dominio;
 
 /**
  * @class VueloCharter
- * @brief Representa un vuelo contratado para una operación especial.
+ * @brief Representa un vuelo contratado para una operacion especial.
  */
 public class VueloCharter extends Vuelo {
 
@@ -13,11 +13,11 @@ public class VueloCharter extends Vuelo {
 
     /**
      * @brief Crea un vuelo charter.
-     * @param numero Número del vuelo.
+     * @param numero Numero del vuelo.
      * @param origen Origen del vuelo.
      * @param destino Destino del vuelo.
      * @param fecha Fecha del vuelo.
-     * @param capacidad Capacidad máxima de pasajeros.
+     * @param capacidad Capacidad maxima de pasajeros.
      * @param empresaContratante Empresa o entidad contratante.
      * @param costoTotal Costo total del vuelo charter.
      */
@@ -35,11 +35,11 @@ public class VueloCharter extends Vuelo {
     /**
      * @brief Establece la empresa contratante del vuelo charter.
      * @param empresaContratante Nombre de la empresa contratante.
-     * @throws IllegalArgumentException Si el nombre de la empresa es inválido.
+     * @throws IllegalArgumentException Si el nombre de la empresa es invalido.
      */
     public void setEmpresaContratante(String empresaContratante) {
         if (empresaContratante == null || empresaContratante.trim().isEmpty()) {
-            throw new IllegalArgumentException("La empresa contratante no puede estar vacía.");
+            throw new IllegalArgumentException("La empresa contratante no puede estar vacia.");
         }
         this.empresaContratante = empresaContratante.trim();
     }
@@ -70,7 +70,7 @@ public class VueloCharter extends Vuelo {
     }
 
     /**
-     * @brief Devuelve información específica del vuelo charter.
+     * @brief Devuelve informacion especifica del vuelo charter.
      * @return Detalle del vuelo charter.
      */
     @Override

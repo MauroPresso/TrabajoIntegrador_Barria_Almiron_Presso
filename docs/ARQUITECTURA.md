@@ -1,36 +1,36 @@
-# Arquitectura â€” Sistema de AerolÃ­nea
+# Arquitectura - Sistema de Aerolinea
 
 ## Objetivo
 
-El proyecto busca reproducir de forma conceptual la organizaciÃ³n y los contenidos del repositorio Biblioteca de la cÃ¡tedra, utilizando un dominio diferente.
+El proyecto busca reproducir de forma conceptual la organizacion y los contenidos del repositorio Biblioteca de la catedra, utilizando un dominio diferente.
 
 ## Capas
 
 ```text
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚        Swing / Consola       â”‚
-â”‚              ui              â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-               â”‚
-               â–¼
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚           Dominio            â”‚
-â”‚ Aerolinea / Vuelo / Persona  â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-               â”‚ sincronizaciÃ³n
-               â–¼
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚         Servicio<T>          â”‚
-â”‚       IServicio<T>           â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-               â”‚
-               â–¼
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚      IRepositorio<T>         â”‚
-â”‚   RepositorioArchivo<T>      â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-               â”‚
-               â–¼
++------------------------------+
+|        Swing / Consola       |
+|              ui              |
++--------------+---------------+
+               |
+
++------------------------------+
+|           Dominio            |
+| Aerolinea / Vuelo / Persona  |
++--------------+---------------+
+               | sincronizacion
+
++------------------------------+
+|         Servicio<T>          |
+|       IServicio<T>           |
++--------------+---------------+
+               |
+
++------------------------------+
+|      IRepositorio<T>         |
+|   RepositorioArchivo<T>      |
++--------------+---------------+
+               |
+
         archivos .dat
 ```
 
@@ -48,12 +48,12 @@ Subclases:
 
 ```text
 Vuelo
-â”œâ”€â”€ VueloNacional
-â”œâ”€â”€ VueloInternacional
-â””â”€â”€ VueloCharter
++-- VueloNacional
++-- VueloInternacional
++-- VueloCharter
 ```
 
-Esto permite almacenar distintos tipos concretos en colecciones de tipo `Vuelo` y ejecutar comportamiento polimÃ³rfico.
+Esto permite almacenar distintos tipos concretos en colecciones de tipo `Vuelo` y ejecutar comportamiento polimorfico.
 
 ### Persona
 
@@ -68,11 +68,11 @@ Subclases:
 
 ```text
 Persona
-â”œâ”€â”€ Pasajero
-â””â”€â”€ Tripulante
++-- Pasajero
++-- Tripulante
 ```
 
-El DNI actÃºa como identidad lÃ³gica de una persona.
+El DNI actua como identidad logica de una persona.
 
 ### Aerolinea
 
@@ -88,7 +88,7 @@ HashSet<Persona>
 
 No conoce archivos ni repositorios.
 
-## Persistencia genÃ©rica
+## Persistencia generica
 
 La interfaz:
 
@@ -98,29 +98,29 @@ IRepositorio<T>
 
 define el contrato de persistencia.
 
-La implementaciÃ³n:
+La implementacion:
 
 ```java
 RepositorioArchivo<T>
 ```
 
-utiliza serializaciÃ³n Java y puede trabajar con diferentes tipos:
+utiliza serializacion Java y puede trabajar con diferentes tipos:
 
 ```java
 RepositorioArchivo<Vuelo>
 RepositorioArchivo<Persona>
 ```
 
-## Servicio genÃ©rico
+## Servicio generico
 
 ```java
 IServicio<T>
 Servicio<T>
 ```
 
-permiten trabajar contra `IRepositorio<T>` sin depender de una implementaciÃ³n concreta.
+permiten trabajar contra `IRepositorio<T>` sin depender de una implementacion concreta.
 
-## Interfaz grÃ¡fica
+## Interfaz grafica
 
 `Ventana` extiende `JFrame`.
 
@@ -128,15 +128,15 @@ permiten trabajar contra `IRepositorio<T>` sin depender de una implementaciÃ³n
 
 ```text
 PanelManager
-â”œâ”€â”€ PanelPrincipal
-â”œâ”€â”€ PanelVuelosFormulario
-â”œâ”€â”€ PanelVuelosTabla
-â”œâ”€â”€ PanelPasajerosFormulario
-â”œâ”€â”€ PanelPasajerosTabla
-â””â”€â”€ PanelReservas
++-- PanelPrincipal
++-- PanelVuelosFormulario
++-- PanelVuelosTabla
++-- PanelPasajerosFormulario
++-- PanelPasajerosTabla
++-- PanelReservas
 ```
 
-`TableVuelosModel` y `TablePasajerosModel` extienden `AbstractTableModel` y actÃºan como adaptadores entre objetos del dominio y `JTable`.
+`TableVuelosModel` y `TablePasajerosModel` extienden `AbstractTableModel` y actuan como adaptadores entre objetos del dominio y `JTable`.
 
 ## Eventos
 
@@ -148,7 +148,7 @@ boton.addActionListener(
 );
 ```
 
-La aplicaciÃ³n grÃ¡fica se inicia dentro del Event Dispatch Thread:
+La aplicacion grafica se inicia dentro del Event Dispatch Thread:
 
 ```java
 SwingUtilities.invokeLater(...);
@@ -156,7 +156,7 @@ SwingUtilities.invokeLater(...);
 
 ## Equivalencias conceptuales
 
-| Biblioteca | AerolÃ­nea |
+| Biblioteca | Aerolinea |
 |---|---|
 | Biblioteca | Aerolinea |
 | Material | Vuelo |
@@ -171,4 +171,4 @@ SwingUtilities.invokeLater(...);
 | TableMaterialesModel | TableVuelosModel |
 | TableUsuarioModel | TablePasajerosModel |
 
-Las equivalencias son pedagÃ³gicas; no implican que las entidades tengan el mismo significado de negocio.
+Las equivalencias son pedagogicas; no implican que las entidades tengan el mismo significado de negocio.

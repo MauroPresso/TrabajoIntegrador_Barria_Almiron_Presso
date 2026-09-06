@@ -14,12 +14,12 @@
 
     <name>SistemaDeAerolinea</name>
     <description>
-        Proyecto acadÃ©mico de ProgramaciÃ³n II: sistema de aerolÃ­nea anÃ¡logo
-        al proyecto Biblioteca de la cÃ¡tedra.
+        Proyecto academico de Programacion II: sistema de aerolinea analogo
+        al proyecto Biblioteca de la catedra.
     </description>
 
     <properties>
-        <!-- Java 17 se usa como nivel de compatibilidad de compilaciÃ³n. -->
+        <!-- Java 17 se usa como nivel de compatibilidad de compilacion. -->
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -27,14 +27,14 @@
 
     <!--
         En esta etapa el proyecto no necesita bibliotecas externas.
-        Las dependencias de testing (JUnit) se incorporarÃ¡n cuando
+        Las dependencias de testing (JUnit) se incorporaran cuando
         construyamos los tests automatizados.
     -->
     <dependencies>
     </dependencies>
 
     <build>
-        <!-- Nombre pedagÃ³gicamente legible del artefacto generado. -->
+        <!-- Nombre pedagogicamente legible del artefacto generado. -->
         <finalName>SistemaDeAerolinea-${project.version}</finalName>
 
         <plugins>
@@ -49,7 +49,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Genera un JAR ejecutable indicando cuÃ¡l es el mÃ©todo main. -->
+            <!-- Genera un JAR ejecutable indicando cual es el metodo main. -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>

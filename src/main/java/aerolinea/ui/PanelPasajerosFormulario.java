@@ -115,8 +115,8 @@ public class PanelPasajerosFormulario extends JPanel {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(
                     this,
-                    "El DNI debe ser numÃ©rico.",
-                    "Dato invÃ¡lido",
+                    "El DNI debe ser numerico.",
+                    "Dato invalido",
                     JOptionPane.ERROR_MESSAGE);
 
         } catch (IllegalArgumentException | IOException e) {

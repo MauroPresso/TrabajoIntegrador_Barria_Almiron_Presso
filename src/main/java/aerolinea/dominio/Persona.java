@@ -8,7 +8,7 @@ import java.util.Objects;
  * @brief Clase base abstracta para representar personas dentro del sistema.
  *
  * La clase implementa Comparable para permitir ordenar personas por apellido.
- * También redefine equals() y hashCode() tomando como identidad única el DNI.
+ * Tambien redefine equals() y hashCode() tomando como identidad unica el DNI.
  */
 public abstract class Persona implements Comparable<Persona>, Serializable {
 
@@ -20,7 +20,7 @@ public abstract class Persona implements Comparable<Persona>, Serializable {
 
     /**
      * @brief Crea una persona con sus datos principales.
-     * @param dni DNI de la persona. Se usa como identificador único.
+     * @param dni DNI de la persona. Se usa como identificador unico.
      * @param nombre Nombre de la persona.
      * @param apellido Apellido de la persona.
      */
@@ -55,7 +55,7 @@ public abstract class Persona implements Comparable<Persona>, Serializable {
      */
     public void setNombre(String nombre) {
         if (nombre == null || nombre.trim().isEmpty()) {
-            throw new IllegalArgumentException("El nombre no puede estar vacío.");
+            throw new IllegalArgumentException("El nombre no puede estar vacio.");
         }
         this.nombre = nombre.trim();
     }
@@ -74,7 +74,7 @@ public abstract class Persona implements Comparable<Persona>, Serializable {
      */
     public void setApellido(String apellido) {
         if (apellido == null || apellido.trim().isEmpty()) {
-            throw new IllegalArgumentException("El apellido no puede estar vacío.");
+            throw new IllegalArgumentException("El apellido no puede estar vacio.");
         }
         this.apellido = apellido.trim();
     }
@@ -88,14 +88,14 @@ public abstract class Persona implements Comparable<Persona>, Serializable {
     }
 
     /**
-     * @brief Muestra por consola la información de la persona.
+     * @brief Muestra por consola la informacion de la persona.
      */
     public abstract void mostrarInfo();
 
     /**
      * @brief Compara personas por apellido, luego por nombre y finalmente por DNI.
      * @param otra Otra persona a comparar.
-     * @return Valor negativo, cero o positivo según el orden alfabético.
+     * @return Valor negativo, cero o positivo segun el orden alfabetico.
      */
     @Override
     public int compareTo(Persona otra) {
@@ -113,7 +113,7 @@ public abstract class Persona implements Comparable<Persona>, Serializable {
     }
 
     /**
-     * @brief Compara personas usando el DNI como identidad única.
+     * @brief Compara personas usando el DNI como identidad unica.
      * @param obj Objeto a comparar.
      * @return true si ambos objetos representan a la misma persona por DNI.
      */
@@ -130,8 +130,8 @@ public abstract class Persona implements Comparable<Persona>, Serializable {
     }
 
     /**
-     * @brief Genera el código hash usando el DNI.
-     * @return Código hash de la persona.
+     * @brief Genera el codigo hash usando el DNI.
+     * @return Codigo hash de la persona.
      */
     @Override
     public int hashCode() {

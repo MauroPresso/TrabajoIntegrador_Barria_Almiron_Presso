@@ -1,10 +1,10 @@
 package aerolinea.util;
 
 /**
- * Utilidad didÃ¡ctica para demostrar sobrecarga de mÃ©todos.
+ * Utilidad didactica para demostrar sobrecarga de metodos.
  *
- * <p>La misma operaciÃ³n conceptual, calcularTotal, posee distintas firmas.
- * Java decide quÃ© versiÃ³n invocar segÃºn la cantidad y tipo de argumentos.</p>
+ * <p>La misma operacion conceptual, calcularTotal, posee distintas firmas.
+ * Java decide que version invocar segun la cantidad y tipo de argumentos.</p>
  */
 public class CalculadoraTarifas {
 

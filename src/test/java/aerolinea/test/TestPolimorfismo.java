@@ -7,7 +7,7 @@ import aerolinea.dominio.VueloInternacional;
 import aerolinea.dominio.VueloNacional;
 
 /**
- * Laboratorio de polimorfismo anÃ¡logo a TestPolimorfismo de Biblioteca.
+ * Laboratorio de polimorfismo analogo a TestPolimorfismo de Biblioteca.
  */
 public class TestPolimorfismo {
 
@@ -18,15 +18,15 @@ public class TestPolimorfismo {
         Vuelo[] vuelos = new Vuelo[3];
 
         vuelos[0] = new VueloNacional(
-                "AR100", "NeuquÃ©n", "Buenos Aires", "2026-10-10", 180, "Buenos Aires");
+                "AR100", "Neuquen", "Buenos Aires", "2026-10-10", 180, "Buenos Aires");
 
         vuelos[1] = new VueloInternacional(
                 "AR200", "Buenos Aires", "Santiago", "2026-10-11", 220, "Chile", true);
 
         vuelos[2] = new VueloCharter(
-                "CH300", "NeuquÃ©n", "Mendoza", "2026-10-12", 80, "Empresa Andina", 9500000.0);
+                "CH300", "Neuquen", "Mendoza", "2026-10-12", 80, "Empresa Andina", 9500000.0);
 
-        // Misma referencia base (Vuelo), distinto comportamiento segÃºn el objeto real.
+        // Misma referencia base (Vuelo), distinto comportamiento segun el objeto real.
         for (Vuelo vuelo : vuelos) {
             vuelo.mostrarInfo();
         }
@@ -52,7 +52,7 @@ public class TestPolimorfismo {
         if (posibleInternacional instanceof VueloInternacional) {
             VueloInternacional internacional = (VueloInternacional) posibleInternacional;
 
-            System.out.println("PaÃ­s destino: " + internacional.getPaisDestino());
+            System.out.println("Pais destino: " + internacional.getPaisDestino());
             System.out.println("Requiere pasaporte: " + internacional.isRequierePasaporte());
         }
 

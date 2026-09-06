@@ -1,4 +1,4 @@
-# GuÃ­a de estudio y validaciÃ³n
+# Guia de estudio y validacion
 
 ## Requisitos
 
@@ -15,13 +15,13 @@ mvn -version
 git --version
 ```
 
-## ValidaciÃ³n Maven
+## Validacion Maven
 
 ```powershell
 mvn clean verify
 ```
 
-La compilaciÃ³n correcta genera:
+La compilacion correcta genera:
 
 ```text
 target/classes/
@@ -29,13 +29,13 @@ target/test-classes/
 target/SistemaDeAerolinea-1.0-SNAPSHOT.jar
 ```
 
-## EjecuciÃ³n grÃ¡fica
+## Ejecucion grafica
 
 ```powershell
 java -jar target/SistemaDeAerolinea-1.0-SNAPSHOT.jar
 ```
 
-## EjecuciÃ³n por consola
+## Ejecucion por consola
 
 ```powershell
 java -jar target/SistemaDeAerolinea-1.0-SNAPSHOT.jar --consola
@@ -43,7 +43,7 @@ java -jar target/SistemaDeAerolinea-1.0-SNAPSHOT.jar --consola
 
 ## Laboratorios
 
-DespuÃ©s de ejecutar `mvn clean verify`:
+Despues de ejecutar `mvn clean verify`:
 
 ```powershell
 java -cp "target/test-classes;target/classes" aerolinea.test.TestPolimorfismo
@@ -58,24 +58,24 @@ java -cp "target/test-classes;target/classes" aerolinea.test.UiDatosTest
 
 ## Preguntas que el proyecto permite explicar
 
-### Â¿DÃ³nde hay herencia?
+### Donde hay herencia?
 
 ```text
 Persona -> Pasajero / Tripulante
 Vuelo -> Nacional / Internacional / Charter
 ```
 
-### Â¿DÃ³nde hay polimorfismo?
+### Donde hay polimorfismo?
 
 Una referencia `Vuelo` puede apuntar a cualquiera de sus tres subclases.
 
-### Â¿DÃ³nde se usa una interfaz?
+### Donde se usa una interfaz?
 
 `Vuelo` implementa `IOperable`.
 
 `Servicio<T>` trabaja contra `IRepositorio<T>`.
 
-### Â¿DÃ³nde se usan genÃ©ricos?
+### Donde se usan genericos?
 
 ```text
 IRepositorio<T>
@@ -84,34 +84,34 @@ IServicio<T>
 Servicio<T>
 ```
 
-### Â¿DÃ³nde se usa Comparable?
+### Donde se usa Comparable?
 
 `Persona` y `Vuelo`.
 
-### Â¿DÃ³nde se usa Comparator?
+### Donde se usa Comparator?
 
 Comparadores externos para ordenar vuelos por criterios alternativos.
 
-### Â¿DÃ³nde se usan Collections?
+### Donde se usan Collections?
 
-En las colecciones internas de `Aerolinea` y en los laboratorios pedagÃ³gicos.
+En las colecciones internas de `Aerolinea` y en los laboratorios pedagogicos.
 
-### Â¿DÃ³nde se usan lambdas y Streams?
+### Donde se usan lambdas y Streams?
 
-En bÃºsquedas, filtros, ordenamientos, sumas y eventos Swing.
+En busquedas, filtros, ordenamientos, sumas y eventos Swing.
 
-### Â¿CÃ³mo se persisten los datos?
+### Como se persisten los datos?
 
-Por serializaciÃ³n Java a travÃ©s de `RepositorioArchivo<T>`.
+Por serializacion Java a traves de `RepositorioArchivo<T>`.
 
-### Â¿QuÃ© responsabilidad tiene Main?
+### Que responsabilidad tiene Main?
 
 Crear e interconectar repositorios, servicios, dominio e interfaz.
 
-### Â¿QuÃ© responsabilidad tiene Aerolinea?
+### Que responsabilidad tiene Aerolinea?
 
 Reglas de negocio y estado del dominio, sin conocer persistencia.
 
-### Â¿QuÃ© responsabilidad tiene PanelManager?
+### Que responsabilidad tiene PanelManager?
 
-Administrar navegaciÃ³n, servicios de la UI, sincronizaciÃ³n y actualizaciÃ³n de modelos Swing.
+Administrar navegacion, servicios de la UI, sincronizacion y actualizacion de modelos Swing.

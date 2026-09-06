@@ -21,7 +21,7 @@ public class TablePasajerosModel extends AbstractTableModel {
 
     public TablePasajerosModel(Aerolinea aerolinea) {
         if (aerolinea == null) {
-            throw new IllegalArgumentException("La aerolÃ­nea no puede ser nula.");
+            throw new IllegalArgumentException("La aerolinea no puede ser nula.");
         }
 
         this.aerolinea = aerolinea;

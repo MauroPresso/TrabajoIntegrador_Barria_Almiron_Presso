@@ -12,7 +12,7 @@ import java.awt.Component;
 import java.awt.Font;
 
 /**
- * MenÃº principal grÃ¡fico.
+ * Menu principal grafico.
  */
 public class PanelPrincipal extends JPanel {
 
@@ -26,7 +26,7 @@ public class PanelPrincipal extends JPanel {
                 30, 30, 30, 30));
 
         JLabel titulo =
-                new JLabel("Sistema de AerolÃ­nea IFES");
+                new JLabel("Sistema de Aerolinea IFES");
 
         titulo.setFont(
                 titulo.getFont().deriveFont(Font.BOLD, 26f));

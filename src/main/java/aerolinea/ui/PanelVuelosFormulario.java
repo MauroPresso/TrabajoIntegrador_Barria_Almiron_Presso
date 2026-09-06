@@ -85,7 +85,7 @@ public class PanelVuelosFormulario extends JPanel {
         campoEmpresa = new JTextField();
         campoCosto = new JTextField();
 
-        formulario.add(new JLabel("NÃºmero de vuelo:"));
+        formulario.add(new JLabel("Numero de vuelo:"));
         formulario.add(campoNumero);
 
         formulario.add(new JLabel("Origen:"));
@@ -103,7 +103,7 @@ public class PanelVuelosFormulario extends JPanel {
         formulario.add(new JLabel("Provincia (Nacional):"));
         formulario.add(campoProvincia);
 
-        formulario.add(new JLabel("PaÃ­s (Internacional):"));
+        formulario.add(new JLabel("Pais (Internacional):"));
         formulario.add(campoPais);
 
         formulario.add(new JLabel("Pasaporte (Internacional):"));
@@ -139,7 +139,7 @@ public class PanelVuelosFormulario extends JPanel {
 
     private void guardarVuelo() {
         try {
-            String numero = textoObligatorio(campoNumero, "nÃºmero");
+            String numero = textoObligatorio(campoNumero, "numero");
             String origen = textoObligatorio(campoOrigen, "origen");
             String destino = textoObligatorio(campoDestino, "destino");
             String fecha = textoObligatorio(campoFecha, "fecha");
@@ -171,15 +171,15 @@ public class PanelVuelosFormulario extends JPanel {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(
                     this,
-                    "Capacidad y costo deben contener valores numÃ©ricos vÃ¡lidos.",
-                    "Dato invÃ¡lido",
+                    "Capacidad y costo deben contener valores numericos validos.",
+                    "Dato invalido",
                     JOptionPane.ERROR_MESSAGE);
 
         } catch (DateTimeParseException e) {
             JOptionPane.showMessageDialog(
                     this,
-                    "La fecha debe tener formato yyyy-MM-dd y ser una fecha vÃ¡lida.",
-                    "Fecha invÃ¡lida",
+                    "La fecha debe tener formato yyyy-MM-dd y ser una fecha valida.",
+                    "Fecha invalida",
                     JOptionPane.ERROR_MESSAGE);
 
         } catch (IllegalArgumentException | IOException e) {
@@ -198,7 +198,7 @@ public class PanelVuelosFormulario extends JPanel {
                              int capacidad) {
 
         if (radioInternacional.isSelected()) {
-            String pais = textoObligatorio(campoPais, "paÃ­s");
+            String pais = textoObligatorio(campoPais, "pais");
 
             return new VueloInternacional(
                     numero,

@@ -19,52 +19,52 @@ import java.util.Scanner;
 
 /**
  * @file Menu.java
- * @brief Contiene el menú interactivo por consola del sistema de aerolínea.
+ * @brief Contiene el menu interactivo por consola del sistema de aerolinea.
  */
 
 /**
  * @class Menu
- * @brief Gestiona la interacción del usuario con el sistema mediante consola.
+ * @brief Gestiona la interaccion del usuario con el sistema mediante consola.
  *
  * Esta clase utiliza Scanner para leer datos ingresados por teclado y delega
  * las operaciones principales en la clase Aerolinea.
  *
- * Todos los ingresos por teclado se validan mediante métodos auxiliares para
- * evitar datos vacíos, números negativos, formatos inválidos, fechas incorrectas,
+ * Todos los ingresos por teclado se validan mediante metodos auxiliares para
+ * evitar datos vacios, numeros negativos, formatos invalidos, fechas incorrectas,
  * opciones fuera de rango o valores incoherentes.
  *
- * Además, dispara el guardado de vuelos luego de las operaciones que modifican
+ * Ademas, dispara el guardado de vuelos luego de las operaciones que modifican
  * la lista de vuelos o sus reservas.
  */
 public class Menu {
 
     /**
-     * @brief Opción utilizada para finalizar el menú.
+     * @brief Opcion utilizada para finalizar el menu.
      */
     private static final int OPCION_SALIR = 0;
 
     /**
-     * @brief Opción máxima disponible en el menú principal.
+     * @brief Opcion maxima disponible en el menu principal.
      */
     private static final int OPCION_MAXIMA_MENU = 7;
 
     /**
-     * @brief Capacidad máxima aceptada para un vuelo.
+     * @brief Capacidad maxima aceptada para un vuelo.
      */
     private static final int CAPACIDAD_MAXIMA_VUELO = 999;
 
     /**
-     * @brief Servicio principal de la aerolínea.
+     * @brief Servicio principal de la aerolinea.
      */
     private final Aerolinea aerolinea;
 
     /**
-     * Servicio genÃ©rico encargado de persistir los vuelos.
+     * Servicio genA(C)rico encargado de persistir los vuelos.
      */
     private final Servicio<Vuelo> servicioVuelos;
 
     /**
-     * Servicio genÃ©rico encargado de persistir personas.
+     * Servicio genA(C)rico encargado de persistir personas.
      */
     private final Servicio<Persona> servicioPersonas;
 
@@ -83,7 +83,7 @@ public class Menu {
     private boolean cambiosSinGuardar;
 
     /**
-     * @brief Constructor del menú.
+     * @brief Constructor del menu.
      *
      * @param aerolinea Objeto principal del dominio.
      */
@@ -96,7 +96,7 @@ public class Menu {
                 Servicio<Persona> servicioPersonas) {
 
         if (aerolinea == null) {
-            throw new IllegalArgumentException("La aerolÃ­nea no puede ser nula.");
+            throw new IllegalArgumentException("La aerolAnea no puede ser nula.");
         }
 
         if (servicioVuelos == null) {
@@ -111,7 +111,7 @@ public class Menu {
     }
 
     /**
-     * @brief Inicia la ejecución del menú interactivo.
+     * @brief Inicia la ejecucion del menu interactivo.
      *
      * Muestra las opciones disponibles hasta que el usuario decide salir.
      * Al finalizar, intenta guardar cualquier cambio que haya quedado pendiente.
@@ -122,7 +122,7 @@ public class Menu {
         try {
             do {
                 mostrarOpciones();
-                opcion = leerEnteroEnRango("Seleccione una opción: ",
+                opcion = leerEnteroEnRango("Seleccione una opcion: ",
                         OPCION_SALIR, OPCION_MAXIMA_MENU);
                 ejecutarOpcion(opcion);
             } while (opcion != OPCION_SALIR);
@@ -151,9 +151,9 @@ public class Menu {
     }
 
     /**
-     * @brief Ejecuta la opción seleccionada por el usuario.
+     * @brief Ejecuta la opcion seleccionada por el usuario.
      *
-     * @param opcion Número de opción ingresado.
+     * @param opcion Numero de opcion ingresado.
      */
     private void ejecutarOpcion(int opcion) {
         switch (opcion) {
@@ -182,7 +182,7 @@ public class Menu {
                 System.out.println("Saliendo del sistema...");
                 break;
             default:
-                System.out.println("Opción inválida.");
+                System.out.println("Opcion invalida.");
                 break;
         }
     }
@@ -202,11 +202,11 @@ public class Menu {
 
         int tipoVuelo = leerEnteroEnRango("Seleccione el tipo de vuelo: ", 1, 3);
 
-        String numero = leerCodigoVuelo("Número de vuelo: ");
+        String numero = leerCodigoVuelo("Numero de vuelo: ");
 
         while (aerolinea.buscarVueloPorNumero(numero) != null) {
-            System.out.println("Ya existe un vuelo con ese número.");
-            numero = leerCodigoVuelo("Ingrese otro número de vuelo: ");
+            System.out.println("Ya existe un vuelo con ese numero.");
+            numero = leerCodigoVuelo("Ingrese otro numero de vuelo: ");
         }
 
         String origen = leerTextoAlfabetico("Ciudad o aeropuerto de origen: ");
@@ -225,14 +225,14 @@ public class Menu {
     }
 
     /**
-     * @brief Crea un vuelo según el tipo seleccionado por el usuario.
+     * @brief Crea un vuelo segun el tipo seleccionado por el usuario.
      *
      * @param tipoVuelo Tipo de vuelo seleccionado.
-     * @param numero Número del vuelo.
+     * @param numero Numero del vuelo.
      * @param origen Origen del vuelo.
      * @param destino Destino del vuelo.
      * @param fecha Fecha del vuelo.
-     * @param capacidad Capacidad máxima del vuelo.
+     * @param capacidad Capacidad maxima del vuelo.
      * @return Vuelo creado.
      */
     private Vuelo crearVueloSegunTipo(int tipoVuelo, String numero, String origen,
@@ -243,8 +243,8 @@ public class Menu {
                 return new VueloNacional(numero, origen, destino, fecha, capacidad, provinciaDestino);
 
             case 2:
-                String paisDestino = leerTextoAlfabetico("País de destino: ");
-                boolean requierePasaporte = leerBooleano("¿Requiere pasaporte? (S/N): ");
+                String paisDestino = leerTextoAlfabetico("Pais de destino: ");
+                boolean requierePasaporte = leerBooleano("Requiere pasaporte? (S/N): ");
                 return new VueloInternacional(numero, origen, destino, fecha, capacidad,
                         paisDestino, requierePasaporte);
 
@@ -255,14 +255,14 @@ public class Menu {
                         empresaContratante, costoTotal);
 
             default:
-                throw new IllegalArgumentException("Tipo de vuelo inválido.");
+                throw new IllegalArgumentException("Tipo de vuelo invalido.");
         }
     }
 
     /**
-     * @brief Permite registrar un pasajero en la aerolínea.
+     * @brief Permite registrar un pasajero en la aerolinea.
      *
-     * El requerimiento de serialización actual persiste la lista de vuelos.
+     * El requerimiento de serializacion actual persiste la lista de vuelos.
      * Por eso, los pasajeros quedan persistidos cuando forman parte de una
      * reserva dentro de un vuelo guardado.
      */
@@ -279,7 +279,7 @@ public class Menu {
 
         String nombre = leerTextoAlfabetico("Nombre: ");
         String apellido = leerTextoAlfabetico("Apellido: ");
-        String numeroPasaporte = leerPasaporteOpcional("Número de pasaporte (opcional): ");
+        String numeroPasaporte = leerPasaporteOpcional("Numero de pasaporte (opcional): ");
 
         try {
             Pasajero pasajero = new Pasajero(dni, nombre, apellido, numeroPasaporte);
@@ -296,7 +296,7 @@ public class Menu {
      *
      * Valida que existan pasajeros y vuelos cargados, que el pasajero exista,
      * que el vuelo exista, que no haya una reserva duplicada y que el usuario
-     * confirme la operación antes de realizarla.
+     * confirme la operacion antes de realizarla.
      */
     private void reservarVuelo() {
         System.out.println();
@@ -314,7 +314,7 @@ public class Menu {
 
         try {
             int dniPasajero = leerDniPasajeroRegistrado("DNI del pasajero: ");
-            String numeroVuelo = leerCodigoVueloExistente("Número de vuelo: ");
+            String numeroVuelo = leerCodigoVueloExistente("Numero de vuelo: ");
 
             Pasajero pasajero = obtenerPasajeroPorDni(dniPasajero);
             Vuelo vuelo = aerolinea.buscarVueloPorNumero(numeroVuelo);
@@ -336,7 +336,7 @@ public class Menu {
             System.out.println();
             pasajero.mostrarInfo();
 
-            boolean confirma = leerBooleano("¿Confirma la reserva? (S/N): ");
+            boolean confirma = leerBooleano("Confirma la reserva? (S/N): ");
 
             if (!confirma) {
                 System.out.println("Reserva cancelada por el usuario.");
@@ -352,7 +352,7 @@ public class Menu {
         } catch (IllegalArgumentException e) {
             System.out.println("Error en la reserva: " + e.getMessage());
         } finally {
-            System.out.println("Finalizó la operación de reserva.");
+            System.out.println("Finalizo la operacion de reserva.");
         }
     }
 
@@ -360,7 +360,7 @@ public class Menu {
      * @brief Permite cancelar una reserva existente.
      *
      * Valida que el pasajero y el vuelo existan, que la reserva exista y pide
-     * confirmación antes de cancelarla.
+     * confirmacion antes de cancelarla.
      */
     private void cancelarReserva() {
         System.out.println();
@@ -377,7 +377,7 @@ public class Menu {
         }
 
         int dniPasajero = leerDniPasajeroRegistrado("DNI del pasajero: ");
-        String numeroVuelo = leerCodigoVueloExistente("Número de vuelo: ");
+        String numeroVuelo = leerCodigoVueloExistente("Numero de vuelo: ");
 
         Pasajero pasajero = obtenerPasajeroPorDni(dniPasajero);
         Vuelo vuelo = aerolinea.buscarVueloPorNumero(numeroVuelo);
@@ -391,16 +391,16 @@ public class Menu {
         System.out.println("Reserva encontrada:");
         vuelo.mostrarInfo();
 
-        boolean confirma = leerBooleano("¿Confirma la cancelación de la reserva? (S/N): ");
+        boolean confirma = leerBooleano("Confirma la cancelacion de la reserva? (S/N): ");
 
         if (!confirma) {
-            System.out.println("Cancelación abortada por el usuario.");
+            System.out.println("Cancelacion abortada por el usuario.");
             return;
         }
 
         try {
             aerolinea.cancelarReserva(dniPasajero, numeroVuelo);
-            System.out.println("Operación de cancelación procesada.");
+            System.out.println("Operacion de cancelacion procesada.");
             marcarCambiosYGuardar("cancelar reserva");
         } catch (IllegalArgumentException e) {
             System.out.println("Error al cancelar la reserva: " + e.getMessage());
@@ -410,7 +410,7 @@ public class Menu {
     /**
      * @brief Marca que hubo cambios y ejecuta el guardado.
      *
-     * @param operacion Nombre de la operación realizada.
+     * @param operacion Nombre de la operacion realizada.
      */
     private void marcarCambiosYGuardar(String operacion) {
         cambiosSinGuardar = true;
@@ -423,7 +423,7 @@ public class Menu {
      * Si el guardado se realiza correctamente, limpia la marca de cambios
      * pendientes. Si falla, la marca queda activa para intentar guardar al salir.
      *
-     * @param contexto Texto que indica en qué momento se intenta guardar.
+     * @param contexto Texto que indica en que momento se intenta guardar.
      */
     private void guardarCambiosPendientes(String contexto) {
         if (!cambiosSinGuardar) {
@@ -469,7 +469,7 @@ public class Menu {
     }
 
     /**
-     * @brief Muestra todos los vuelos ordenados alfabéticamente por destino.
+     * @brief Muestra todos los vuelos ordenados alfabeticamente por destino.
      */
     private void mostrarVuelosOrdenadosPorDestino() {
         System.out.println();
@@ -523,7 +523,7 @@ public class Menu {
      *
      * @param pasajero Pasajero que desea reservar.
      * @param vuelo Vuelo seleccionado.
-     * @return true si puede reservar según el requisito de pasaporte.
+     * @return true si puede reservar segun el requisito de pasaporte.
      */
     private boolean pasajeroTienePasaporteSiElVueloLoRequiere(Pasajero pasajero, Vuelo vuelo) {
         if (vuelo instanceof VueloInternacional) {
@@ -538,12 +538,12 @@ public class Menu {
     }
 
     /**
-     * @brief Lee un número entero desde consola.
+     * @brief Lee un numero entero desde consola.
      *
-     * Repite la lectura hasta que el usuario ingrese un entero válido.
+     * Repite la lectura hasta que el usuario ingrese un entero valido.
      *
      * @param mensaje Mensaje mostrado al usuario.
-     * @return Número entero ingresado.
+     * @return Numero entero ingresado.
      */
     private int leerEntero(String mensaje) {
         while (true) {
@@ -551,25 +551,25 @@ public class Menu {
             String entrada = scanner.nextLine().trim();
 
             if (!entrada.matches("-?\\d+")) {
-                System.out.println("Debe ingresar un número entero válido.");
+                System.out.println("Debe ingresar un numero entero valido.");
                 continue;
             }
 
             try {
                 return Integer.parseInt(entrada);
             } catch (NumberFormatException e) {
-                System.out.println("El número ingresado es demasiado grande.");
+                System.out.println("El numero ingresado es demasiado grande.");
             }
         }
     }
 
     /**
-     * @brief Lee un número entero dentro de un rango determinado.
+     * @brief Lee un numero entero dentro de un rango determinado.
      *
      * @param mensaje Mensaje mostrado al usuario.
-     * @param minimo Valor mínimo permitido.
-     * @param maximo Valor máximo permitido.
-     * @return Número entero válido dentro del rango.
+     * @param minimo Valor minimo permitido.
+     * @param maximo Valor maximo permitido.
+     * @return Numero entero valido dentro del rango.
      */
     private int leerEnteroEnRango(String mensaje, int minimo, int maximo) {
         while (true) {
@@ -579,17 +579,17 @@ public class Menu {
                 return valor;
             }
 
-            System.out.println("Debe ingresar un número entre " + minimo + " y " + maximo + ".");
+            System.out.println("Debe ingresar un numero entre " + minimo + " y " + maximo + ".");
         }
     }
 
     /**
-     * @brief Lee un DNI válido desde consola.
+     * @brief Lee un DNI valido desde consola.
      *
-     * Acepta únicamente números positivos de 7 u 8 dígitos.
+     * Acepta unicamente numeros positivos de 7 u 8 digitos.
      *
      * @param mensaje Mensaje mostrado al usuario.
-     * @return DNI válido.
+     * @return DNI valido.
      */
     private int leerDni(String mensaje) {
         while (true) {
@@ -599,7 +599,7 @@ public class Menu {
                 return dni;
             }
 
-            System.out.println("El DNI debe ser un número positivo de 7 u 8 dígitos.");
+            System.out.println("El DNI debe ser un numero positivo de 7 u 8 digitos.");
         }
     }
 
@@ -628,12 +628,12 @@ public class Menu {
     }
 
     /**
-     * @brief Lee un número decimal no negativo.
+     * @brief Lee un numero decimal no negativo.
      *
      * Acepta coma o punto como separador decimal.
      *
      * @param mensaje Mensaje mostrado al usuario.
-     * @return Número decimal mayor o igual que cero.
+     * @return Numero decimal mayor o igual que cero.
      */
     private double leerDoubleNoNegativo(String mensaje) {
         while (true) {
@@ -647,21 +647,21 @@ public class Menu {
                     return valor;
                 }
 
-                System.out.println("Debe ingresar un número mayor o igual que cero.");
+                System.out.println("Debe ingresar un numero mayor o igual que cero.");
             } catch (NumberFormatException e) {
-                System.out.println("Debe ingresar un número decimal válido.");
+                System.out.println("Debe ingresar un numero decimal valido.");
             }
         }
     }
 
     /**
-     * @brief Lee un código de vuelo válido.
+     * @brief Lee un codigo de vuelo valido.
      *
-     * El formato aceptado es de dos a cuatro letras seguidas de uno a seis números.
-     * Ejemplos válidos: AR100, CH300, IFES25.
+     * El formato aceptado es de dos a cuatro letras seguidas de uno a seis numeros.
+     * Ejemplos validos: AR100, CH300, IFES25.
      *
      * @param mensaje Mensaje mostrado al usuario.
-     * @return Código de vuelo normalizado en mayúsculas.
+     * @return Codigo de vuelo normalizado en mayusculas.
      */
     private String leerCodigoVuelo(String mensaje) {
         while (true) {
@@ -672,17 +672,17 @@ public class Menu {
                 return entrada;
             }
 
-            System.out.println("Código inválido. Ejemplos válidos: AR100, CH300, IFES25.");
+            System.out.println("Codigo invalido. Ejemplos validos: AR100, CH300, IFES25.");
         }
     }
 
     /**
-     * @brief Lee el código de un vuelo existente.
+     * @brief Lee el codigo de un vuelo existente.
      *
-     * Repite la lectura hasta que el vuelo exista en la aerolínea.
+     * Repite la lectura hasta que el vuelo exista en la aerolinea.
      *
      * @param mensaje Mensaje mostrado al usuario.
-     * @return Código de un vuelo existente.
+     * @return Codigo de un vuelo existente.
      */
     private String leerCodigoVueloExistente(String mensaje) {
         while (true) {
@@ -692,17 +692,17 @@ public class Menu {
                 return numeroVuelo;
             }
 
-            System.out.println("No existe un vuelo registrado con ese número.");
+            System.out.println("No existe un vuelo registrado con ese numero.");
         }
     }
 
     /**
-     * @brief Lee un texto alfabético obligatorio.
+     * @brief Lee un texto alfabetico obligatorio.
      *
-     * Acepta letras, espacios, tildes, puntos, apóstrofes y guiones.
+     * Acepta letras, espacios, tildes, puntos, apostrofes y guiones.
      *
      * @param mensaje Mensaje mostrado al usuario.
-     * @return Texto válido normalizado.
+     * @return Texto valido normalizado.
      */
     private String leerTextoAlfabetico(String mensaje) {
         while (true) {
@@ -713,17 +713,17 @@ public class Menu {
                 return normalizarCapitalizacion(entrada);
             }
 
-            System.out.println("Debe ingresar texto válido. Ejemplos: Neuquén, Buenos Aires, Córdoba.");
+            System.out.println("Debe ingresar texto valido. Ejemplos: Neuquen, Buenos Aires, Cordoba.");
         }
     }
 
     /**
-     * @brief Lee un texto válido para el nombre de una empresa.
+     * @brief Lee un texto valido para el nombre de una empresa.
      *
-     * Acepta letras, números, espacios y algunos símbolos comerciales comunes.
+     * Acepta letras, numeros, espacios y algunos simbolos comerciales comunes.
      *
      * @param mensaje Mensaje mostrado al usuario.
-     * @return Texto válido para empresa.
+     * @return Texto valido para empresa.
      */
     private String leerTextoEmpresa(String mensaje) {
         while (true) {
@@ -734,18 +734,18 @@ public class Menu {
                 return normalizarCapitalizacion(entrada);
             }
 
-            System.out.println("Debe ingresar un nombre de empresa válido.");
+            System.out.println("Debe ingresar un nombre de empresa valido.");
         }
     }
 
     /**
-     * @brief Lee una fecha válida en formato ISO.
+     * @brief Lee una fecha valida en formato ISO.
      *
      * El formato requerido es yyyy-MM-dd. Por ejemplo: 2026-06-20.
-     * Además, la fecha no puede ser anterior al día actual.
+     * Ademas, la fecha no puede ser anterior al dia actual.
      *
      * @param mensaje Mensaje mostrado al usuario.
-     * @return Fecha válida como texto.
+     * @return Fecha valida como texto.
      */
     private String leerFechaValida(String mensaje) {
         while (true) {
@@ -756,24 +756,24 @@ public class Menu {
                 LocalDate fecha = LocalDate.parse(entrada);
 
                 if (fecha.isBefore(LocalDate.now())) {
-                    System.out.println("La fecha del vuelo no puede ser anterior al día actual.");
+                    System.out.println("La fecha del vuelo no puede ser anterior al dia actual.");
                 } else {
                     return fecha.toString();
                 }
 
             } catch (DateTimeParseException e) {
-                System.out.println("Fecha inválida. Use el formato yyyy-MM-dd. Ejemplo: 2026-06-20.");
+                System.out.println("Fecha invalida. Use el formato yyyy-MM-dd. Ejemplo: 2026-06-20.");
             }
         }
     }
 
     /**
-     * @brief Lee un número de pasaporte opcional.
+     * @brief Lee un numero de pasaporte opcional.
      *
-     * Permite dejar el campo vacío. Si se completa, debe ser alfanumérico.
+     * Permite dejar el campo vacio. Si se completa, debe ser alfanumerico.
      *
      * @param mensaje Mensaje mostrado al usuario.
-     * @return Pasaporte ingresado o cadena vacía.
+     * @return Pasaporte ingresado o cadena vacia.
      */
     private String leerPasaporteOpcional(String mensaje) {
         while (true) {
@@ -788,7 +788,7 @@ public class Menu {
                 return entrada;
             }
 
-            System.out.println("Pasaporte inválido. Use letras, números o guiones. Ejemplo: A123456.");
+            System.out.println("Pasaporte invalido. Use letras, numeros o guiones. Ejemplo: A123456.");
         }
     }
 
@@ -816,7 +816,7 @@ public class Menu {
     }
 
     /**
-     * @brief Normaliza un texto colocando cada palabra con inicial mayúscula.
+     * @brief Normaliza un texto colocando cada palabra con inicial mayuscula.
      *
      * @param texto Texto ingresado por el usuario.
      * @return Texto normalizado.

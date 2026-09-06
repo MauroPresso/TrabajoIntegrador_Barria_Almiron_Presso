@@ -13,7 +13,7 @@ import java.util.Objects;
  * @brief Clase abstracta base para todos los tipos de vuelo.
  *
  * Implementa IOperable para exponer operaciones comunes como embarcar y cancelar.
- * También implementa Serializable para permitir la persistencia en archivo.
+ * Tambien implementa Serializable para permitir la persistencia en archivo.
  */
 public abstract class Vuelo implements IOperable, Comparable<Vuelo>, Serializable {
 
@@ -30,11 +30,11 @@ public abstract class Vuelo implements IOperable, Comparable<Vuelo>, Serializabl
 
     /**
      * @brief Crea un vuelo con los datos comunes a todos los tipos.
-     * @param numero Número identificador del vuelo.
+     * @param numero Numero identificador del vuelo.
      * @param origen Ciudad o aeropuerto de origen.
      * @param destino Ciudad o aeropuerto de destino.
      * @param fecha Fecha del vuelo en formato texto.
-     * @param capacidad Cantidad máxima de pasajeros.
+     * @param capacidad Cantidad maxima de pasajeros.
      */
     public Vuelo(String numero, String origen, String destino, String fecha, int capacidad) {
         setNumero(numero);
@@ -58,7 +58,7 @@ public abstract class Vuelo implements IOperable, Comparable<Vuelo>, Serializabl
     }
 
     public void setNumero(String numero) {
-        this.numero = validarTextoObligatorio(numero, "número");
+        this.numero = validarTextoObligatorio(numero, "numero");
     }
 
     public String getOrigen() {
@@ -92,7 +92,7 @@ public abstract class Vuelo implements IOperable, Comparable<Vuelo>, Serializabl
     /**
      * @brief Establece la capacidad del vuelo asegurando que no sea menor a los pasajeros ya reservados.
      * @param capacidad Nueva capacidad del vuelo.
-     * @throws IllegalArgumentException Si la capacidad es inválida o menor a los pasajeros actuales.
+     * @throws IllegalArgumentException Si la capacidad es invalida o menor a los pasajeros actuales.
      */
     public void setCapacidad(int capacidad) {
         if (capacidad <= 0) {
@@ -131,7 +131,7 @@ public abstract class Vuelo implements IOperable, Comparable<Vuelo>, Serializabl
     /**
      * @brief Reserva un asiento para un pasajero.
      * @param pasajero Pasajero que desea reservar.
-     * @throws VueloNoDisponibleException Si el vuelo está en vuelo, cancelado o sin asientos.
+     * @throws VueloNoDisponibleException Si el vuelo esta en vuelo, cancelado o sin asientos.
      */
     public void reservarPasajero(Pasajero pasajero) throws VueloNoDisponibleException {
         if (pasajero == null) {
@@ -148,7 +148,7 @@ public abstract class Vuelo implements IOperable, Comparable<Vuelo>, Serializabl
     /**
      * @brief Cancela la reserva de un pasajero en este vuelo.
      * @param pasajero Pasajero cuya reserva se desea cancelar.
-     * @return true si la reserva existía y fue cancelada.
+     * @return true si la reserva existia y fue cancelada.
      */
     public boolean cancelarReserva(Pasajero pasajero) {
         if (pasajero == null) {
@@ -187,7 +187,7 @@ public abstract class Vuelo implements IOperable, Comparable<Vuelo>, Serializabl
     }
 
     /**
-     * @brief Cambia el estado del vuelo a EN_VUELO cuando está programado.
+     * @brief Cambia el estado del vuelo a EN_VUELO cuando esta programado.
      */
     @Override
     public void embarcar() {
@@ -195,7 +195,7 @@ public abstract class Vuelo implements IOperable, Comparable<Vuelo>, Serializabl
             estado = EstadoVuelo.EN_VUELO;
             System.out.println("Embarque iniciado para el vuelo " + numero + ".");
         } else {
-            System.out.println("No se puede embarcar el vuelo " + numero + " porque está " + estado + ".");
+            System.out.println("No se puede embarcar el vuelo " + numero + " porque esta " + estado + ".");
         }
     }
 
@@ -209,7 +209,7 @@ public abstract class Vuelo implements IOperable, Comparable<Vuelo>, Serializabl
     }
 
     /**
-     * @brief Muestra la información común y específica del vuelo.
+     * @brief Muestra la informacion comun y especifica del vuelo.
      */
     public void mostrarInfo() {
         System.out.println("Vuelo " + numero
@@ -228,23 +228,23 @@ public abstract class Vuelo implements IOperable, Comparable<Vuelo>, Serializabl
     }
 
     /**
-     * @brief Permite a las subclases agregar datos propios al mostrar información.
-     * @return Detalle específico del tipo de vuelo.
+     * @brief Permite a las subclases agregar datos propios al mostrar informacion.
+     * @return Detalle especifico del tipo de vuelo.
      */
     protected String obtenerDetalleAdicional() {
         return "";
     }
 
     /**
-     * @brief Valida si el vuelo está disponible para reservar.
+     * @brief Valida si el vuelo esta disponible para reservar.
      * @throws VueloNoDisponibleException Si el vuelo no permite reservas.
      */
     private void validarDisponibilidadParaReserva() throws VueloNoDisponibleException {
         if (estado == EstadoVuelo.EN_VUELO) {
-            throw new VueloNoDisponibleException("El vuelo " + numero + " ya está en vuelo.");
+            throw new VueloNoDisponibleException("El vuelo " + numero + " ya esta en vuelo.");
         }
         if (estado == EstadoVuelo.CANCELADO) {
-            throw new VueloNoDisponibleException("El vuelo " + numero + " está cancelado.");
+            throw new VueloNoDisponibleException("El vuelo " + numero + " esta cancelado.");
         }
         if (!hayAsientosDisponibles()) {
             throw new VueloNoDisponibleException("El vuelo " + numero + " no tiene asientos disponibles.");
@@ -253,19 +253,19 @@ public abstract class Vuelo implements IOperable, Comparable<Vuelo>, Serializabl
 
     private String validarTextoObligatorio(String valor, String campo) {
         if (valor == null || valor.trim().isEmpty()) {
-            throw new IllegalArgumentException("El campo " + campo + " no puede estar vacío.");
+            throw new IllegalArgumentException("El campo " + campo + " no puede estar vacio.");
         }
         return valor.trim();
     }
 
     /**
-     * @brief Compara vuelos por número de vuelo.
+     * @brief Compara vuelos por numero de vuelo.
      *
      * Define el orden natural de los vuelos usando el campo numero.
      * Esto permite ordenar una lista de vuelos mediante Collections.sort().
      *
      * @param otro Otro vuelo a comparar.
-     * @return Valor negativo, cero o positivo según el orden alfabético del número.
+     * @return Valor negativo, cero o positivo segun el orden alfabetico del numero.
      */
     @Override
     public int compareTo(Vuelo otro) {
@@ -273,9 +273,9 @@ public abstract class Vuelo implements IOperable, Comparable<Vuelo>, Serializabl
     }
 
     /**
-     * @brief Compara vuelos por número.
+     * @brief Compara vuelos por numero.
      * @param obj Objeto a comparar.
-     * @return true si ambos vuelos tienen el mismo número.
+     * @return true si ambos vuelos tienen el mismo numero.
      */
     @Override
     public boolean equals(Object obj) {
@@ -290,8 +290,8 @@ public abstract class Vuelo implements IOperable, Comparable<Vuelo>, Serializabl
     }
 
     /**
-     * @brief Genera el código hash del vuelo usando su número.
-     * @return Código hash del vuelo.
+     * @brief Genera el codigo hash del vuelo usando su numero.
+     * @return Codigo hash del vuelo.
      */
     @Override
     public int hashCode() {

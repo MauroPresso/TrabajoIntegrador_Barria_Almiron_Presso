@@ -5,16 +5,16 @@ import java.util.List;
 
 /**
  * @file IRepositorio.java
- * @brief Define una interfaz genérica para operaciones de persistencia.
+ * @brief Define una interfaz generica para operaciones de persistencia.
  */
 
 /**
  * @interface IRepositorio
- * @brief Interfaz genérica para guardar y consultar datos persistidos.
+ * @brief Interfaz generica para guardar y consultar datos persistidos.
  *
  * Esta interfaz permite desacoplar las clases de servicio del mecanismo
  * concreto de persistencia. De esta forma, Aerolinea puede trabajar contra
- * una abstracción sin saber si los datos se guardan en archivos, base de datos
+ * una abstraccion sin saber si los datos se guardan en archivos, base de datos
  * u otro medio.
  *
  * @param <T> Tipo de objeto administrado por el repositorio.

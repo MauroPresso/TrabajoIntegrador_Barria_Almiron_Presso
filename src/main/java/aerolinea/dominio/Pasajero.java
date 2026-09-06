@@ -22,7 +22,7 @@ public class Pasajero extends Persona {
      * @param dni DNI del pasajero.
      * @param nombre Nombre del pasajero.
      * @param apellido Apellido del pasajero.
-     * @param numeroPasaporte Número de pasaporte. Puede quedar vacío en vuelos nacionales.
+     * @param numeroPasaporte Numero de pasaporte. Puede quedar vacio en vuelos nacionales.
      */
     public Pasajero(int dni, String nombre, String apellido, String numeroPasaporte) {
         super(dni, nombre, apellido);
@@ -31,16 +31,16 @@ public class Pasajero extends Persona {
     }
 
     /**
-     * @brief Obtiene el número de pasaporte del pasajero.
-     * @return Número de pasaporte.
+     * @brief Obtiene el numero de pasaporte del pasajero.
+     * @return Numero de pasaporte.
      */
     public String getNumeroPasaporte() {
         return numeroPasaporte;
     }
 
     /**
-     * @brief Modifica el número de pasaporte del pasajero.
-     * @param numeroPasaporte Nuevo número de pasaporte.
+     * @brief Modifica el numero de pasaporte del pasajero.
+     * @param numeroPasaporte Nuevo numero de pasaporte.
      */
     public void setNumeroPasaporte(String numeroPasaporte) {
         this.numeroPasaporte = normalizarTextoOpcional(numeroPasaporte);
@@ -96,7 +96,7 @@ public class Pasajero extends Persona {
     }
 
     /**
-     * @brief Muestra las reservas del pasajero usando referencia a método.
+     * @brief Muestra las reservas del pasajero usando referencia a metodo.
      */
     public void mostrarReservas() {
         System.out.println("Reservas de " + getNombreCompleto() + ":");
@@ -139,7 +139,7 @@ public class Pasajero extends Persona {
     /**
      * @brief Normaliza campos de texto opcionales.
      * @param texto Texto recibido.
-     * @return Texto sin espacios laterales o cadena vacía.
+     * @return Texto sin espacios laterales o cadena vacia.
      */
     private String normalizarTextoOpcional(String texto) {
         return texto == null ? "" : texto.trim();

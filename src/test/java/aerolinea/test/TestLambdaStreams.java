@@ -23,13 +23,13 @@ public class TestLambdaStreams {
         List<Vuelo> vuelos = new ArrayList<>();
 
         vuelos.add(new VueloNacional(
-                "AR101", "NeuquÃ©n", "Buenos Aires", "2026-12-01", 180, "Buenos Aires"));
+                "AR101", "Neuquen", "Buenos Aires", "2026-12-01", 180, "Buenos Aires"));
 
         vuelos.add(new VueloInternacional(
-                "AR202", "Buenos Aires", "Madrid", "2026-12-02", 260, "EspaÃ±a", true));
+                "AR202", "Buenos Aires", "Madrid", "2026-12-02", 260, "Espana", true));
 
         vuelos.add(new VueloCharter(
-                "CH303", "NeuquÃ©n", "Mendoza", "2026-12-03", 70, "Patagonia Energy", 7800000.0));
+                "CH303", "Neuquen", "Mendoza", "2026-12-03", 70, "Patagonia Energy", 7800000.0));
 
         System.out.println("=== PREDICATE ===");
 
@@ -62,10 +62,10 @@ public class TestLambdaStreams {
 
         Supplier<VueloNacional> crearVuelo =
                 () -> new VueloNacional(
-                        "AR404", "NeuquÃ©n", "Ushuaia", "2026-12-04", 140, "Tierra del Fuego");
+                        "AR404", "Neuquen", "Ushuaia", "2026-12-04", 140, "Tierra del Fuego");
 
         VueloNacional vueloCreado = crearVuelo.get();
-        System.out.println("Supplier creÃ³: " + vueloCreado.getNumero());
+        System.out.println("Supplier creo: " + vueloCreado.getNumero());
 
         System.out.println();
         System.out.println("=== STREAM API ===");

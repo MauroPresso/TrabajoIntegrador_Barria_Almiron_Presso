@@ -13,7 +13,7 @@ import aerolinea.util.ComparadorVueloPorNumero;
 
 /**
  * @file Aerolinea.java
- * @brief Objeto principal del dominio del sistema de aerolÃ­nea.
+ * @brief Objeto principal del dominio del sistema de aerolAnea.
  */
 
 /**
@@ -22,7 +22,7 @@ import aerolinea.util.ComparadorVueloPorNumero;
  *
  * <p>Esta clase no conoce archivos, repositorios ni mecanismos de
  * persistencia. Su responsabilidad es representar y operar el estado de una
- * aerolÃ­nea mediante objetos y colecciones Java.</p>
+ * aerolAnea mediante objetos y colecciones Java.</p>
  *
  * <p>Conceptos demostrados:</p>
  * <ul>
@@ -30,13 +30,13 @@ import aerolinea.util.ComparadorVueloPorNumero;
  *   <li>HashMap para indexar personas por DNI.</li>
  *   <li>HashSet para evitar duplicados de pasajeros con reserva activa.</li>
  *   <li>Comparable, Comparator y Collections.sort().</li>
- *   <li>Streams, lambdas y referencias a mÃ©todos.</li>
+ *   <li>Streams, lambdas y referencias a mA(C)todos.</li>
  *   <li>Herencia, polimorfismo y excepciones de negocio.</li>
  * </ul>
  */
 public class Aerolinea {
 
-    /** Nombre comercial de la aerolÃ­nea. */
+    /** Nombre comercial de la aerolAnea. */
     private final String nombre;
 
     /** Vuelos administrados por el dominio. */
@@ -49,22 +49,22 @@ public class Aerolinea {
     private final HashSet<Persona> pasajerosConReservaActiva;
 
     /**
-     * Crea una aerolÃ­nea vacÃ­a, completamente en memoria.
+     * Crea una aerolAnea vacAa, completamente en memoria.
      *
-     * @param nombre nombre comercial de la aerolÃ­nea
+     * @param nombre nombre comercial de la aerolAnea
      */
     public Aerolinea(String nombre) {
         this(nombre, new ArrayList<>(), new ArrayList<>());
     }
 
     /**
-     * Crea una aerolÃ­nea a partir de una colecciÃ³n inicial de vuelos.
+     * Crea una aerolAnea a partir de una colecciAn inicial de vuelos.
      *
-     * <p>La colecciÃ³n recibida se copia. De este modo el objeto de dominio
-     * conserva su propio estado y no queda acoplado a la colecciÃ³n interna de
+     * <p>La colecciAn recibida se copia. De este modo el objeto de dominio
+     * conserva su propio estado y no queda acoplado a la colecciAn interna de
      * un servicio o repositorio.</p>
      *
-     * @param nombre nombre comercial de la aerolÃ­nea
+     * @param nombre nombre comercial de la aerolAnea
      * @param vuelosIniciales vuelos con los que se inicializa el dominio
      */
     public Aerolinea(String nombre, List<Vuelo> vuelosIniciales) {
@@ -72,14 +72,14 @@ public class Aerolinea {
     }
 
     /**
-     * Crea una aerolÃ­nea a partir de vuelos y personas previamente cargados.
+     * Crea una aerolAnea a partir de vuelos y personas previamente cargados.
      *
      * <p>Primero reconstruye las personas que forman parte del grafo de vuelos.
      * Luego incorpora las personas persistidas de forma independiente que no
-     * estÃ©n ya representadas por el mismo DNI. Esto permite conservar tambiÃ©n
-     * pasajeros registrados que aÃºn no poseen reservas.</p>
+     * estA(C)n ya representadas por el mismo DNI. Esto permite conservar tambiA(C)n
+     * pasajeros registrados que aAn no poseen reservas.</p>
      *
-     * @param nombre nombre comercial de la aerolÃ­nea
+     * @param nombre nombre comercial de la aerolAnea
      * @param vuelosIniciales vuelos previamente cargados
      * @param personasIniciales personas previamente cargadas
      */
@@ -87,7 +87,7 @@ public class Aerolinea {
                      List<Vuelo> vuelosIniciales,
                      List<Persona> personasIniciales) {
 
-        this.nombre = validarTextoObligatorio(nombre, "nombre de la aerolÃ­nea");
+        this.nombre = validarTextoObligatorio(nombre, "nombre de la aerolAnea");
 
         if (vuelosIniciales == null) {
             throw new IllegalArgumentException("La lista inicial de vuelos no puede ser nula.");
@@ -111,8 +111,8 @@ public class Aerolinea {
      * @brief Reconstruye las colecciones auxiliares de personas a partir de los vuelos del dominio.
      *
      * Los pasajeros y tripulantes asociados a cada vuelo forman parte del mismo
-     * grafo de objetos del dominio. A partir de ellos se reconstruyen los Ã­ndices
-     * auxiliares utilizados por la aerolÃ­nea.
+     * grafo de objetos del dominio. A partir de ellos se reconstruyen los Andices
+     * auxiliares utilizados por la aerolAnea.
      */
     private void reconstruirPersonasDesdeVuelos() {
         personasPorDni.clear();
@@ -148,19 +148,19 @@ public class Aerolinea {
     }
 
     /**
-     * @brief Obtiene el nombre comercial de la aerolínea.
+     * @brief Obtiene el nombre comercial de la aerolinea.
      *
-     * @return Nombre de la aerolínea.
+     * @return Nombre de la aerolinea.
      */
     public String getNombre() {
         return nombre;
     }
 
     /**
-     * @brief Agrega un vuelo a la aerolínea.
+     * @brief Agrega un vuelo a la aerolinea.
      *
      * @param vuelo Vuelo a agregar.
-     * @throws IllegalArgumentException Si el vuelo es nulo o ya existe otro vuelo con el mismo número.
+     * @throws IllegalArgumentException Si el vuelo es nulo o ya existe otro vuelo con el mismo numero.
      */
     public void agregarVuelo(Vuelo vuelo) {
         if (vuelo == null) {
@@ -168,7 +168,7 @@ public class Aerolinea {
         }
 
         if (buscarVueloPorNumero(vuelo.getNumero()) != null) {
-            throw new IllegalArgumentException("Ya existe un vuelo con el número " + vuelo.getNumero() + ".");
+            throw new IllegalArgumentException("Ya existe un vuelo con el numero " + vuelo.getNumero() + ".");
         }
 
         vuelos.add(vuelo);
@@ -177,11 +177,11 @@ public class Aerolinea {
     /**
      * @brief Registra una persona en el sistema usando su DNI como clave.
      *
-     * Se utiliza HashMap<Integer, Persona> para acceder rápidamente a pasajeros
+     * Se utiliza HashMap<Integer, Persona> para acceder rapidamente a pasajeros
      * o tripulantes a partir de su DNI.
      *
      * @param persona Persona a registrar.
-     * @return true si se registró correctamente, false si el DNI ya existía.
+     * @return true si se registro correctamente, false si el DNI ya existia.
      * @throws IllegalArgumentException Si la persona es nula.
      */
     public boolean registrarPersona(Persona persona) {
@@ -208,17 +208,17 @@ public class Aerolinea {
     }
 
     /**
-     * @brief Busca un vuelo por número usando Stream.
+     * @brief Busca un vuelo por numero usando Stream.
      *
-     * El número de vuelo se maneja como String porque en el modelo actual
-     * existen códigos como AR100, AR200 o CH300.
+     * El numero de vuelo se maneja como String porque en el modelo actual
+     * existen codigos como AR100, AR200 o CH300.
      *
-     * Este método utiliza programación funcional mediante:
+     * Este metodo utiliza programacion funcional mediante:
      * - stream()
      * - filter()
      * - findFirst()
      *
-     * @param numeroVuelo Número o código del vuelo.
+     * @param numeroVuelo Numero o codigo del vuelo.
      * @return Vuelo encontrado o null si no existe.
      */
     public Vuelo buscarVueloPorNumero(String numeroVuelo) {
@@ -237,11 +237,11 @@ public class Aerolinea {
      *
      * Si la reserva se realiza correctamente, el pasajero se agrega al HashSet
      * de pasajeros con reserva activa. Al ser HashSet, se evitan duplicados
-     * automáticamente gracias a equals() y hashCode() de Persona.
+     * automaticamente gracias a equals() y hashCode() de Persona.
      *
      * @param dniPasajero DNI del pasajero.
-     * @param numeroVuelo Número o código del vuelo.
-     * @throws VueloNoDisponibleException Si el vuelo no está disponible.
+     * @param numeroVuelo Numero o codigo del vuelo.
+     * @throws VueloNoDisponibleException Si el vuelo no esta disponible.
      */
     public void reservarVuelo(int dniPasajero, String numeroVuelo) throws VueloNoDisponibleException {
         Persona persona = personasPorDni.get(dniPasajero);
@@ -259,7 +259,7 @@ public class Aerolinea {
         Vuelo vuelo = buscarVueloPorNumero(numeroVuelo);
 
         if (vuelo == null) {
-            System.out.println("No existe el vuelo número " + numeroVuelo);
+            System.out.println("No existe el vuelo numero " + numeroVuelo);
             return;
         }
 
@@ -274,11 +274,11 @@ public class Aerolinea {
     /**
      * @brief Cancela una reserva de un pasajero.
      *
-     * Si luego de cancelar el pasajero no posee más reservas activas, se lo
+     * Si luego de cancelar el pasajero no posee mas reservas activas, se lo
      * elimina del HashSet correspondiente.
      *
      * @param dniPasajero DNI del pasajero.
-     * @param numeroVuelo Número o código del vuelo.
+     * @param numeroVuelo Numero o codigo del vuelo.
      */
     public void cancelarReserva(int dniPasajero, String numeroVuelo) {
         Persona persona = personasPorDni.get(dniPasajero);
@@ -291,7 +291,7 @@ public class Aerolinea {
         Vuelo vuelo = buscarVueloPorNumero(numeroVuelo);
 
         if (vuelo == null) {
-            System.out.println("No existe el vuelo número " + numeroVuelo);
+            System.out.println("No existe el vuelo numero " + numeroVuelo);
             return;
         }
 
@@ -305,7 +305,7 @@ public class Aerolinea {
                 pasajerosConReservaActiva.remove(pasajero);
             }
         } else {
-            System.out.println("El pasajero no tenía reservado ese vuelo.");
+            System.out.println("El pasajero no tenia reservado ese vuelo.");
         }
     }
 
@@ -339,10 +339,10 @@ public class Aerolinea {
     /**
      * @brief Obtiene una nueva lista con los vuelos programados.
      *
-     * Este método filtra la lista interna de vuelos y retorna una nueva lista
-     * que contiene únicamente aquellos cuyo estado es PROGRAMADO.
+     * Este metodo filtra la lista interna de vuelos y retorna una nueva lista
+     * que contiene unicamente aquellos cuyo estado es PROGRAMADO.
      *
-     * Se utiliza programación funcional mediante:
+     * Se utiliza programacion funcional mediante:
      * - stream()
      * - filter()
      * - collect(Collectors.toList())
@@ -356,14 +356,14 @@ public class Aerolinea {
     }
 
     /**
-     * @brief Muestra los vuelos programados usando referencia a método.
+     * @brief Muestra los vuelos programados usando referencia a metodo.
      *
-     * Este método reutiliza el filtrado de vuelos programados y muestra cada
-     * vuelo por consola mediante una referencia a método.
+     * Este metodo reutiliza el filtrado de vuelos programados y muestra cada
+     * vuelo por consola mediante una referencia a metodo.
      *
      * Se utiliza:
      * - forEach()
-     * - referencia a método: Vuelo::mostrarInfo
+     * - referencia a metodo: Vuelo::mostrarInfo
      */
     public void mostrarVuelosProgramadosStream() {
         obtenerVuelosProgramadosStream()
@@ -371,17 +371,17 @@ public class Aerolinea {
     }
 
     /**
-     * @brief Muestra los vuelos ordenados alfabéticamente por destino.
+     * @brief Muestra los vuelos ordenados alfabeticamente por destino.
      *
-     * Este método ordena los vuelos usando Stream.sorted() junto con una
-     * expresión lambda. El orden original de la lista interna no se modifica.
+     * Este metodo ordena los vuelos usando Stream.sorted() junto con una
+     * expresion lambda. El orden original de la lista interna no se modifica.
      *
      * Se utiliza:
      * - stream()
      * - sorted()
      * - lambda
      * - forEach()
-     * - referencia a método: Vuelo::mostrarInfo
+     * - referencia a metodo: Vuelo::mostrarInfo
      */
     public void mostrarVuelosOrdenadosPorDestinoStream() {
         vuelos.stream()
@@ -392,7 +392,7 @@ public class Aerolinea {
     /**
      * @brief Calcula el total de asientos ocupados en vuelos programados.
      *
-     * Este método filtra los vuelos programados y luego obtiene la cantidad
+     * Este metodo filtra los vuelos programados y luego obtiene la cantidad
      * de asientos ocupados de cada uno para calcular la suma total.
      *
      * Se utiliza:
@@ -424,11 +424,11 @@ public class Aerolinea {
     }
 
     /**
-     * @brief Devuelve los vuelos ordenados por número usando Comparable.
+     * @brief Devuelve los vuelos ordenados por numero usando Comparable.
      *
      * Utiliza Collections.sort(lista) y el compareTo() de Vuelo.
      *
-     * @return Lista de vuelos ordenados por número.
+     * @return Lista de vuelos ordenados por numero.
      */
     public ArrayList<Vuelo> obtenerVuelosOrdenadosPorNumeroComparable() {
         ArrayList<Vuelo> vuelosOrdenados = new ArrayList<>(vuelos);
@@ -448,9 +448,9 @@ public class Aerolinea {
     }
 
     /**
-     * @brief Devuelve los vuelos ordenados por número usando Comparator externo.
+     * @brief Devuelve los vuelos ordenados por numero usando Comparator externo.
      *
-     * @return Lista de vuelos ordenados por número.
+     * @return Lista de vuelos ordenados por numero.
      */
     public ArrayList<Vuelo> obtenerVuelosOrdenadosPorNumeroComparator() {
         ArrayList<Vuelo> vuelosOrdenados = new ArrayList<>(vuelos);
@@ -459,7 +459,7 @@ public class Aerolinea {
     }
 
     /**
-     * @brief Muestra todos los vuelos de la aerolínea.
+     * @brief Muestra todos los vuelos de la aerolinea.
      */
     public void mostrarVuelos() {
         System.out.println("Vuelos de " + nombre + ":");
@@ -506,16 +506,16 @@ public class Aerolinea {
     }
 
     /**
-     * @brief Valida que un texto obligatorio no sea nulo ni vacío.
+     * @brief Valida que un texto obligatorio no sea nulo ni vacio.
      *
      * @param valor Texto recibido.
      * @param campo Nombre del campo validado.
      * @return Texto normalizado sin espacios laterales.
-     * @throws IllegalArgumentException Si el texto es nulo o vacío.
+     * @throws IllegalArgumentException Si el texto es nulo o vacio.
      */
     private String validarTextoObligatorio(String valor, String campo) {
         if (valor == null || valor.trim().isEmpty()) {
-            throw new IllegalArgumentException("El campo " + campo + " no puede estar vacío.");
+            throw new IllegalArgumentException("El campo " + campo + " no puede estar vacio.");
         }
 
         return valor.trim();

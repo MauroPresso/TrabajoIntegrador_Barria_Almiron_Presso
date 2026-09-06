@@ -2,30 +2,30 @@ package aerolinea.excepcion;
 
 /**
  * @file VueloNoDisponibleException.java
- * @brief Define una excepción checked para vuelos no disponibles.
+ * @brief Define una excepcion checked para vuelos no disponibles.
  */
 
 /**
  * @class VueloNoDisponibleException
- * @brief Excepción personalizada para indicar que un vuelo no puede ser reservado.
+ * @brief Excepcion personalizada para indicar que un vuelo no puede ser reservado.
  *
- * Esta excepción se lanza cuando se intenta reservar un vuelo que se encuentra
+ * Esta excepcion se lanza cuando se intenta reservar un vuelo que se encuentra
  * en vuelo, cancelado o sin asientos disponibles.
  *
- * Al extender de Exception, se trata de una excepción checked, por lo que debe
+ * Al extender de Exception, se trata de una excepcion checked, por lo que debe
  * ser declarada con throws o manejada con try-catch.
  */
 public class VueloNoDisponibleException extends Exception {
 
     /**
-     * Para compatibilidad de serialización
+     * Para compatibilidad de serializacion
      */
     private static final long serialVersionUID = 1L;
 
     /**
      * @brief Constructor con mensaje descriptivo.
      *
-     * @param mensaje Mensaje que explica el motivo por el cual el vuelo no está disponible.
+     * @param mensaje Mensaje que explica el motivo por el cual el vuelo no esta disponible.
      */
     public VueloNoDisponibleException(String mensaje) {
         super(mensaje);
@@ -34,8 +34,8 @@ public class VueloNoDisponibleException extends Exception {
     /**
      * @brief Constructor con mensaje y causa original.
      *
-     * @param mensaje Mensaje que explica el motivo de la excepción.
-     * @param causa Excepción original que produjo este error.
+     * @param mensaje Mensaje que explica el motivo de la excepcion.
+     * @param causa Excepcion original que produjo este error.
      */
     public VueloNoDisponibleException(String mensaje, Throwable causa) {
         super(mensaje, causa);
