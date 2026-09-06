@@ -1,7 +1,6 @@
-package modelo;
+package aerolinea.dominio;
 
-import excepciones.VueloNoDisponibleException;
-import interfaces.IOperable;
+import aerolinea.excepcion.VueloNoDisponibleException;
 
 import java.io.Serializable;
 import java.util.ArrayList;

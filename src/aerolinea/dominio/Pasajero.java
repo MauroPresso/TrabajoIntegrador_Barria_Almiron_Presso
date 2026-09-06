@@ -1,6 +1,6 @@
-package modelo;
+package aerolinea.dominio;
 
-import excepciones.VueloNoDisponibleException;
+import aerolinea.excepcion.VueloNoDisponibleException;
 
 import java.util.ArrayList;
 import java.util.Collections;

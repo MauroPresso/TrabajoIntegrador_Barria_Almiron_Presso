@@ -1,4 +1,4 @@
-package interfaces;
+package aerolinea.repositorio;
 
 import java.io.IOException;
 import java.util.List;

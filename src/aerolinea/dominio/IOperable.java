@@ -1,4 +1,4 @@
-package interfaces;
+package aerolinea.dominio;
 
 /**
  * @interface IOperable

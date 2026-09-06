@@ -1,4 +1,4 @@
-package servicio;
+package aerolinea.servicio;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,15 +8,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import comparadores.ComparadorVueloPorDestino;
-import comparadores.ComparadorVueloPorNumero;
-import excepciones.VueloNoDisponibleException;
-import interfaces.IRepositorio;
-import modelo.EstadoVuelo;
-import modelo.Pasajero;
-import modelo.Persona;
-import modelo.Tripulante;
-import modelo.Vuelo;
+import aerolinea.util.ComparadorVueloPorDestino;
+import aerolinea.util.ComparadorVueloPorNumero;
+import aerolinea.excepcion.VueloNoDisponibleException;
+import aerolinea.repositorio.IRepositorio;
+import aerolinea.dominio.EstadoVuelo;
+import aerolinea.dominio.Pasajero;
+import aerolinea.dominio.Persona;
+import aerolinea.dominio.Tripulante;
+import aerolinea.dominio.Vuelo;
 
 /**
  * @file Aerolinea.java

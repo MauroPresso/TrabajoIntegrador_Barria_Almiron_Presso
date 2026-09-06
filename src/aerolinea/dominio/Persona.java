@@ -1,4 +1,4 @@
-package modelo;
+package aerolinea.dominio;
 
 import java.io.Serializable;
 import java.util.Objects;

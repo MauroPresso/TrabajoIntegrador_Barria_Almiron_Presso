@@ -1,7 +1,6 @@
-package repositorio;
+package aerolinea.repositorio;
 
-import interfaces.IRepositorio;
-import modelo.Vuelo;
+import aerolinea.dominio.Vuelo;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

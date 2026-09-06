@@ -1,4 +1,4 @@
-package excepciones;
+package aerolinea.excepcion;
 
 /**
  * @file VueloNoDisponibleException.java

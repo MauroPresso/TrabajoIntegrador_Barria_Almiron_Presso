@@ -1,8 +1,8 @@
-package comparadores;
+package aerolinea.util;
 
 import java.util.Comparator;
 
-import modelo.Vuelo;
+import aerolinea.dominio.Vuelo;
 
 /**
  * @class ComparadorVueloPorDestino

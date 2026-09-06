@@ -1,8 +1,10 @@
-import interfaces.IRepositorio;
-import menu.Menu;
-import modelo.Vuelo;
-import repositorio.RepositorioVuelosArchivo;
-import servicio.Aerolinea;
+package aerolinea.main;
+
+import aerolinea.repositorio.IRepositorio;
+import aerolinea.ui.Menu;
+import aerolinea.dominio.Vuelo;
+import aerolinea.repositorio.RepositorioVuelosArchivo;
+import aerolinea.servicio.Aerolinea;
 
 /**
  * @file Main.java

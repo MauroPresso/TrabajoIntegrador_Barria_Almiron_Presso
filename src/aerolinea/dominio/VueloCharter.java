@@ -1,4 +1,4 @@
-package modelo;
+package aerolinea.dominio;
 
 /**
  * @class VueloCharter

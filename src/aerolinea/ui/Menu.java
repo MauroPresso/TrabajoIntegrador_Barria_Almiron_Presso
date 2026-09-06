@@ -1,13 +1,13 @@
-package menu;
+package aerolinea.ui;
 
-import excepciones.VueloNoDisponibleException;
-import modelo.Pasajero;
-import modelo.Persona;
-import modelo.Vuelo;
-import modelo.VueloCharter;
-import modelo.VueloInternacional;
-import modelo.VueloNacional;
-import servicio.Aerolinea;
+import aerolinea.excepcion.VueloNoDisponibleException;
+import aerolinea.dominio.Pasajero;
+import aerolinea.dominio.Persona;
+import aerolinea.dominio.Vuelo;
+import aerolinea.dominio.VueloCharter;
+import aerolinea.dominio.VueloInternacional;
+import aerolinea.dominio.VueloNacional;
+import aerolinea.servicio.Aerolinea;
 
 import java.io.IOException;
 import java.time.LocalDate;
